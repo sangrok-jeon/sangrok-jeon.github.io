@@ -3,128 +3,603 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sangrok Jeon</title>
+    <title>Sangrok Jeon | Security Engineer & Researcher</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
+        :root {
+            /* Cyberpunk / Hacker Theme Colors */
+            --bg-color: #0d1117;          /* Github dark theme bg */
+            --bg-secondary: #161b22;      /* Github dark theme secondary */
+            --text-main: #c9d1d9;         /* Github dark text */
+            --text-muted: #8b949e;
+            --accent-primary: #58a6ff;    /* Blue accent */
+            --accent-secondary: #3fb950;  /* Green accent */
+            --accent-glow: rgba(88, 166, 255, 0.4);
+            --border-color: #30363d;
+            --code-bg: #1f2428;
+            
+            --font-main: 'Noto Sans KR', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #f8fafc;
-            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
         
-        .glass-panel {
-            text-align: center;
-            padding: 3rem 4rem;
-            border-radius: 24px;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 1s ease-out;
-            transform: translateY(0);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .section {
+            padding: 5rem 0;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .glass-panel:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.6);
+        .highlight {
+            color: var(--accent-primary);
+            font-weight: 700;
         }
 
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin: 0 0 1rem 0;
-            background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc);
+        .mono {
+            font-family: var(--font-mono);
+        }
+
+        h1, h2, h3, h4 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        h2.section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2.section-title::before {
+            content: ">> ";
+            color: var(--accent-secondary);
+            font-family: var(--font-mono);
+            margin-right: 10px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        /* --- Terminal Header Section --- */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+        
+        /* Grid background effect */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(var(--border-color) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .terminal-window {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            max-width: 800px;
+        }
+
+        .terminal-header {
+            background: #010409;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .term-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .term-btn.red { background: #ff5f56; }
+        .term-btn.yellow { background: #ffbd2e; }
+        .term-btn.green { background: #27c93f; }
+
+        .terminal-title {
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            margin: 0 auto;
+            transform: translateX(-20px); /* visual center offset */
+        }
+
+        .terminal-body {
+            padding: 2rem;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+        }
+
+        .prompt {
+            color: var(--accent-secondary);
+            margin-right: 10px;
+        }
+
+        .command {
+            color: #ffffff;
+        }
+
+        .output {
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background-color: var(--accent-primary);
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-top: 2rem;
+            background: linear-gradient(90deg, #ffffff, var(--text-muted));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-size: 200% auto;
-            animation: shine 3s linear infinite;
+            letter-spacing: -1px;
         }
 
-        p {
+        .hero-subtitle {
             font-size: 1.25rem;
-            color: #94a3b8;
-            margin: 0;
-            line-height: 1.6;
-            font-weight: 400;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            margin-bottom: 2rem;
         }
 
-        .badge {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.5rem 1.25rem;
-            border-radius: 9999px;
-            background: rgba(56, 189, 248, 0.1);
-            color: #38bdf8;
-            font-size: 0.875rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            border: 1px solid rgba(56, 189, 248, 0.2);
+        /* --- About Section --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        @keyframes shine {
-            to { background-position: 200% center; }
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+        
+        .experience-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: transform 0.2s, border-color 0.2s;
         }
 
-        /* Decorative blobs */
-        .blob {
+        .experience-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-primary);
+        }
+
+        .exp-role {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .exp-org {
+            color: var(--accent-primary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Skills Section --- */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            background: rgba(88, 166, 255, 0.1);
+            color: var(--accent-primary);
+            border: 1px solid rgba(88, 166, 255, 0.4);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .skill-tag:hover {
+            background: var(--accent-primary);
+            color: #fff;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        /* --- Projects / Hub Section --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .repo-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .repo-card::before {
+            content: '';
             position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: -1;
-            opacity: 0.4;
-            animation: float 10s ease-in-out infinite;
+            top: 0; left: 0; right: 0;
+            height: 3px;
         }
 
-        .blob-1 {
-            width: 300px;
-            height: 300px;
-            background: #38bdf8;
-            top: -100px;
-            left: -100px;
+        .repo-card.vuln::before { background: #ff7b72; }
+        .repo-card.cve::before { background: #d2a8ff; }
+        .repo-card.infra::before { background: #79c0ff; }
+
+        .repo-card:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
-        .blob-2 {
-            width: 400px;
-            height: 400px;
-            background: #818cf8;
-            bottom: -150px;
-            right: -100px;
-            animation-delay: -5s;
+        .repo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
         }
 
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-            100% { transform: translate(0, 0) scale(1); }
+        .repo-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .repo-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            flex-grow: 1;
+        }
+
+        .repo-footer {
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-main);
+            font-size: 1.5rem;
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-primary);
+        }
+        
+        /* Typing animation script helper class */
+        .typing-content {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    
-    <div class="glass-panel">
-        <h1>Sangrok Jeon</h1>
-        <p>Welcome to my GitHub Pages portfolio.</p>
-        <p>This site is currently under construction.</p>
-        <div class="badge">Coming Soon</div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="section hero">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <div class="term-btn red"></div>
+                        <div class="term-btn yellow"></div>
+                        <div class="term-btn green"></div>
+                    </div>
+                    <div class="terminal-title">user@sangrok-jeon:~</div>
+                </div>
+                <div class="terminal-body" id="term-body">
+                    <div>
+                        <span class="prompt">guest@web:~$</span> 
+                        <span class="command" id="cmd1"></span>
+                    </div>
+                    <div class="output" id="out1" style="display: none;">
+                        Loading profile data...<br>
+                        [OK] Infrastructure Defense Experience verified.<br>
+                        [OK] Solutions (IPS/DDoS/FW) initialized.<br>
+                        [OK] Vulnerability Analysis mode activated.<br>
+                        Initializing portfolio...
+                    </div>
+                    <div id="cmd2-container" style="display: none;">
+                        <span class="prompt">guest@web:~$</span> 
+                        <span class="command" id="cmd2"></span><span class="cursor" id="cursor"></span>
+                    </div>
+                </div>
+            </div>
+
+            <h1 class="hero-title">Sangrok Jeon</h1>
+            <p class="hero-subtitle">
+                <span class="highlight">Information Security Expert</span> & <span class="highlight">Vulnerability Researcher</span><br>
+                From Large-scale Infrastructure Defense to Advanced Threat Analysis.
+            </p>
+        </section>
+
+        <!-- About Me Section -->
+        <section class="section" id="about">
+            <h2 class="section-title">whoami</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>안녕하세요! 인프라 보안 최전선에서의 경험을 바탕으로 <strong>깊이 있는 취약점 연구(Vulnerability Research)</strong>를 향해 나아가는 보안 엔지니어 전상록입니다.</p>
+                    <p>지난 기간 동안 <strong>국가정보원, 문화체육관광부, 농림축산식품부 등 핵심 국가/공공 부처</strong>와 <strong>APEC과 같은 메이저 국제 행사</strong>의 보안 인프라를 전담하는 Solution Engineer로 활동했습니다.</p>
+                    <p>IPS, DDoS, 차세대 방화벽 등 거대한 네트워크 경계 보안 솔루션들이 어떻게 공격을 탐지하고 무력화하는지 직접 설계하고 실무 운영해온 경험은 저의 가장 큰 무기입니다.</p>
+                    <p><strong>"어떻게 방어하는지 완벽히 이해하기에, 어떻게 우회하고 공격하는지(Offense)를 더 날카롭게 분석할 수 있습니다."</strong></p>
+                    <p>현재는 이러한 탄탄한 방어 아키텍처 이해도를 무기로, Web Vulnerability 및 주요 CVE 취약점 분석 등 오펜시브 시큐리티(Offensive Security) 영역의 연구에 집중하고 있습니다.</p>
+                </div>
+                
+                <div class="experience-list">
+                    <div class="experience-card">
+                        <div class="exp-role">보안 솔루션 전담 엔지니어 (Security Solution Engineer)</div>
+                        <div class="exp-org">주요 공공기관 및 국제행사 담당</div>
+                        <p class="mono" style="font-size: 0.9rem; color: var(--text-muted);">
+                            - 국가정보원, 문화체육관광부, 농림축산식품부 인프라 보안 등<br>
+                            - APEC 국제행사 보안 인프라 지원 및 모니터링<br>
+                            - 방화벽, IPS/IDS, DDoS 방어 시스템, TMS, QoS 운영/정책 구축
+                        </p>
+                    </div>
+                    
+                    <div class="experience-card">
+                        <div class="exp-role">Vulnerability Researcher (현재 지향점)</div>
+                        <div class="exp-org">Web & CVE Analysis</div>
+                        <p class="mono" style="font-size: 0.9rem; color: var(--text-muted);">
+                            - 웹 취약점 테스트 환경 구축 및 공격벡터 연구<br>
+                            - 알려진 1-day/CVE 심층 분석 및 PoC 작성<br>
+                            - 인프라 보안 경험 기반의 실효성 있는 완화 조치(Mitigation) 연구
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <h2 class="section-title">skills_and_weapons</h2>
+            
+            <h3 style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1rem;">>> Infrastructure & Defense</h4>
+            <div class="skills-container" style="margin-bottom: 2rem;">
+                <span class="skill-tag">Firewall / NGFW</span>
+                <span class="skill-tag">IPS / IDS Signature Tuning</span>
+                <span class="skill-tag">Anti-DDoS Architecture</span>
+                <span class="skill-tag">TMS (Threat Management)</span>
+                <span class="skill-tag">Network Packet Analysis</span>
+            </div>
+
+            <h3 style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1rem;">>> Offensive Security</h4>
+            <div class="skills-container">
+                <span class="skill-tag"><i class="fa-solid fa-bug"></i> Web Vulnerability Analysis</span>
+                <span class="skill-tag"><i class="fa-solid fa-file-code"></i> CVE Deep Dive & PoC</span>
+                <span class="skill-tag"><i class="fa-brands fa-python"></i> Python Automation</span>
+                <span class="skill-tag"><i class="fa-solid fa-shield-halved"></i> Mitigation Strategy Design</span>
+            </div>
+        </section>
+
+        <!-- HUB / Repositories Section -->
+        <section class="section" id="repositories">
+            <h2 class="section-title">ls -la ./research_hub</h2>
+            <p style="margin-bottom: 2rem; color: var(--text-muted);">
+                각 주제별 상세한 연구 내용 분석 및 완화 대응 방안 가이드는 아래의 별도 GitHub Repository에서 관리하고 있습니다.
+            </p>
+            
+            <div class="projects-grid">
+                <!-- Repository Card 1 -->
+                <a href="#" class="repo-card vuln">
+                    <div class="repo-header">
+                        <div class="repo-title">
+                            <i class="fa-solid fa-spider"></i> web-vuln-analysis
+                        </div>
+                        <div class="repo-type" style="font-size: 0.8rem; border: 1px solid var(--border-color); padding: 2px 8px; border-radius: 10px;">Public</div>
+                    </div>
+                    <div class="repo-desc">
+                        직접 구축한 웹 취약점 테스트 사이트(OWASP Top 10 기반) 환경 소스 및 SQLi, XSS, SSRF 등 각종 웹 공격 기법 상세 분석과 시큐어 코딩 가이드.
+                    </div>
+                    <div class="repo-footer">
+                        <span><span style="color: #f1e05a;">●</span> JavaScript/PHP</span>
+                        <span><i class="fa-regular fa-star"></i> Analysis</span>
+                    </div>
+                </a>
+
+                <!-- Repository Card 2 -->
+                <a href="#" class="repo-card cve">
+                    <div class="repo-header">
+                        <div class="repo-title">
+                            <i class="fa-solid fa-file-shield"></i> cve-1day-exploits
+                        </div>
+                        <div class="repo-type" style="font-size: 0.8rem; border: 1px solid var(--border-color); padding: 2px 8px; border-radius: 10px;">Public</div>
+                    </div>
+                    <div class="repo-desc">
+                        영향력이 큰 주요 CVE 취약점(Log4Shell, 각종 방화벽/VPN 취약점 등)의 동작 원리 분석 보고서 및 PoC (Proof of Concept) 익스플로잇 모음.
+                    </div>
+                    <div class="repo-footer">
+                        <span><span style="color: #3572A5;">●</span> Python</span>
+                        <span><i class="fa-regular fa-star"></i> Exploit</span>
+                    </div>
+                </a>
+
+                <!-- Repository Card 3 -->
+                <a href="#" class="repo-card infra">
+                    <div class="repo-header">
+                        <div class="repo-title">
+                            <i class="fa-solid fa-network-wired"></i> defense-mitigation-rules
+                        </div>
+                        <div class="repo-type" style="font-size: 0.8rem; border: 1px solid var(--border-color); padding: 2px 8px; border-radius: 10px;">Public</div>
+                    </div>
+                    <div class="repo-desc">
+                        솔루션 엔지니어 실무 경험을 살려 작성한 IPS/WAF/방화벽용 탐지 시그니처(Snort/Suricata Rule) 및 인프라 기반 사이버 위협 초기 완화 조치 가이드라인.
+                    </div>
+                    <div class="repo-footer">
+                        <span><span style="color: #b07219;">●</span> Rules/Config</span>
+                        <span><i class="fa-regular fa-star"></i> Defense</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div style="margin-top: 2rem; text-align: center;">
+                <p style="color: var(--text-muted); font-size: 0.9rem;">
+                    * 위 링크는 추후 개별 Repository가 완성되는 대로 업데이트될 예정입니다.
+                </p>
+            </div>
+        </section>
+
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/sangrok-jeon" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <!-- LinkedIn or Email can be added here -->
+            <a href="mailto:your.email@example.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+        <p>&copy; 2026 Sangrok Jeon. All rights reserved.</p>
+        <p class="mono" style="font-size: 0.8rem; margin-top: 0.5rem; color: #484f58;">
+            From Infrastructure Defense to Offensive Security
+        </p>
+    </footer>
+
+    <!-- Terminal Animation Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const cmd1Text = "./start_portfolio.sh";
+            const cmd2Text = "whoami";
+            
+            const cmd1 = document.getElementById("cmd1");
+            const out1 = document.getElementById("out1");
+            const cmd2Container = document.getElementById("cmd2-container");
+            const cmd2 = document.getElementById("cmd2");
+            
+            let i = 0;
+            
+            // Type first command
+            function typeCmd1() {
+                if (i < cmd1Text.length) {
+                    cmd1.innerHTML += cmd1Text.charAt(i);
+                    i++;
+                    setTimeout(typeCmd1, 50);
+                } else {
+                    setTimeout(() => {
+                        out1.style.display = "block";
+                        setTimeout(() => {
+                            cmd2Container.style.display = "block";
+                            i = 0;
+                            setTimeout(typeCmd2, 800);
+                        }, 1000);
+                    }, 400);
+                }
+            }
+
+            // Type second command
+            function typeCmd2() {
+                if (i < cmd2Text.length) {
+                    cmd2.innerHTML += cmd2Text.charAt(i);
+                    i++;
+                    setTimeout(typeCmd2, 100);
+                }
+            }
+
+            // Start typing animation after a small delay
+            setTimeout(typeCmd1, 800);
+        });
+    </script>
 </body>
 </html>
