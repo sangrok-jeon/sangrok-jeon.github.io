@@ -183,6 +183,50 @@
             font-size: 1.03rem;
         }
 
+        .hero-role {
+            margin: 0 0 14px;
+            color: var(--ink);
+            font-size: 1.02rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-summary {
+            max-width: 56ch;
+        }
+
+        .hero-contact {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 22px;
+            max-width: 620px;
+        }
+
+        .hero-contact-item {
+            padding: 16px 18px;
+            border-radius: 16px;
+            border: 1px solid var(--line);
+            background: var(--surface-soft);
+        }
+
+        .hero-contact-label {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--muted);
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .hero-contact-item a,
+        .hero-contact-item span:last-child {
+            color: var(--ink);
+            font-size: 1rem;
+            font-weight: 700;
+            word-break: break-all;
+        }
+
         .hero-actions,
         .hero-pills,
         .project-grid,
@@ -565,6 +609,10 @@
                 font-size: clamp(2.2rem, 12vw, 3.4rem);
                 white-space: normal;
             }
+
+            .hero-contact {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 520px) {
@@ -588,8 +636,8 @@
     <header class="topbar">
         <div class="wrap">
             <div class="brand">
-                <strong>Sangrok Jeon</strong>
-                <span>Security Portfolio / Penetration Testing</span>
+                <strong>전상록</strong>
+                <span>Security Engineer / Penetration Tester</span>
             </div>
             <nav class="nav" aria-label="Primary">
                 <a href="#about">소개</a>
@@ -606,21 +654,25 @@
         <section class="hero" id="about">
             <div>
                 <div class="eyebrow">Security Portfolio</div>
-                <h1>실전형 취약점 분석 포트폴리오</h1>
-                <p>
-                    보안 인프라 구축·운영 경험을 바탕으로 CVE 분석, 모바일 앱 진단, 웹 보안 연구를 정리했습니다.
-                    단순한 취약점 나열이 아니라 악용 가능성, 우회 포인트, 대응 방향까지 함께 보여주는 구성을 지향합니다.
+                <h1>전상록</h1>
+                <div class="hero-role">Security Engineer | Penetration Tester</div>
+                <p class="hero-summary">
+                    보안 인프라 운영 경험을 바탕으로 CVE, 모바일, 웹 취약점 분석을 수행합니다.
                 </p>
-                <div class="hero-pills">
-                    <span class="pill">Exploit Analysis</span>
-                    <span class="pill">Mobile App Testing</span>
-                    <span class="pill">Payload Evasion</span>
-                    <span class="pill">WAF Research</span>
-                    <span class="pill">Mitigation Thinking</span>
+                <div class="hero-contact">
+                    <div class="hero-contact-item">
+                        <span class="hero-contact-label">Email</span>
+                        <a href="mailto:jsr9408@gmail.com">jsr9408@gmail.com</a>
+                    </div>
+                    <div class="hero-contact-item">
+                        <span class="hero-contact-label">Phone</span>
+                        <a href="tel:01096306046">010-9630-6046</a>
+                    </div>
                 </div>
                 <div class="hero-actions">
-                    <a class="button button-primary" href="#projects">프로젝트 보기</a>
-                    <a class="button button-secondary" href="https://github.com/sangrok-jeon" target="_blank" rel="noopener noreferrer">GitHub 프로필</a>
+                    <a class="button button-primary" href="https://github.com/sangrok-jeon" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a class="button button-secondary" href="https://94-rokstar.tistory.com/" target="_blank" rel="noopener noreferrer">Blog</a>
+                    <a class="button button-secondary" href="mailto:jsr9408@gmail.com">Email</a>
                 </div>
             </div>
 
