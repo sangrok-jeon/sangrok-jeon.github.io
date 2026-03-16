@@ -1,448 +1,900 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sangrok Jeon - Security Portfolio</title>
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
-        rel="stylesheet">
+    <title>Sangrok Jeon | Security Portfolio</title>
+    <meta name="description" content="전상록의 보안 포트폴리오입니다. CVE 분석, 모바일 앱 진단, 웹 보안 연구를 체계적으로 정리했습니다.">
+    <meta name="theme-color" content="#0f172a">
+    <meta property="og:title" content="Sangrok Jeon | Security Portfolio">
+    <meta property="og:description" content="공격 재현과 완화 방안을 함께 다루는 보안 포트폴리오입니다.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sangrok-jeon.github.io/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Clean Cyber Theme Custom Properties */
-            --bg-color: #0f111a;
-            --surface-color: #1a1e29;
-            --surface-color-hover: #262c3b;
-            --border-color: #2b3245;
-            --text-primary: #e2e8f0;
-            --text-secondary: #94a3b8;
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.15);
-            --danger: #ef4444;
-            --warning: #f59e0b;
+            --bg: #f3f6fb;
+            --surface: #ffffff;
+            --surface-soft: #f8fbff;
+            --ink: #0f172a;
+            --muted: #5b6474;
+            --line: #dbe4ee;
+            --accent: #0f6fff;
+            --accent-soft: #e8f1ff;
+            --critical: #f04f5a;
+            --critical-soft: #ffe9eb;
+            --mobile: #0f9d73;
+            --mobile-soft: #e9fbf5;
+            --web: #c97908;
+            --web-soft: #fff3e1;
+            --shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+            --radius-lg: 24px;
+            --radius-md: 18px;
+            --radius-sm: 12px;
+            --width: 1120px;
         }
 
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.6;
-            display: flex;
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
+            margin: 0;
+            font-family: "Manrope", sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top left, rgba(15, 111, 255, 0.08), transparent 22%),
+                linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
         }
 
-        /* --- Sidebar Navigation --- */
-        .sidebar {
-            width: 250px;
-            background-color: var(--surface-color);
-            border-right: 1px solid var(--border-color);
-            padding: 2rem 0;
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            height: 100vh;
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
-        .profile-container {
-            text-align: center;
-            padding: 0 1.5rem 2rem 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 1.5rem;
+        .wrap {
+            width: min(calc(100% - 32px), var(--width));
+            margin: 0 auto;
         }
 
-        .profile-name {
-            font-size: 1.25rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.25rem;
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(243, 246, 251, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(219, 228, 238, 0.9);
         }
 
-        .profile-title {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .nav-menu {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-            padding: 0 1rem;
-        }
-
-        .nav-item {
-            padding: 0.75rem 1.25rem;
-            border-radius: 8px;
-            cursor: pointer;
-            color: var(--text-secondary);
-            font-weight: 500;
-            transition: all 0.2s ease;
+        .topbar .wrap {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 20px;
+            padding: 18px 0;
         }
 
-        .nav-item:hover {
-            background-color: var(--surface-color-hover);
-            color: var(--text-primary);
+        .brand {
+            display: grid;
+            gap: 4px;
         }
 
-        .nav-item.active {
-            background-color: var(--accent-glow);
-            color: var(--accent);
-            border-left: 3px solid var(--accent);
-            border-radius: 0 8px 8px 0;
+        .brand strong {
+            font-size: 1rem;
+            letter-spacing: -0.02em;
         }
 
-        /* Category Label */
-        .nav-category {
-            font-size: 0.7rem;
+        .brand span,
+        .eyebrow,
+        .section-kicker,
+        .pill,
+        .badge,
+        .meta-tag {
+            font-family: "IBM Plex Mono", monospace;
+        }
+
+        .brand span {
+            font-size: 0.78rem;
+            color: var(--muted);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #64748b;
-            font-weight: 700;
-            margin: 1.5rem 0 0.5rem 1.5rem;
+            letter-spacing: 0.12em;
         }
 
-        /* --- Main Content Area --- */
-        .main-content {
-            margin-left: 250px;
-            /* offset for sidebar */
-            flex: 1;
-            padding: 4rem 5rem;
-            max-width: 1000px;
+        .nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
-        .content-section {
-            display: none;
-            /* hidden by default */
-            animation: fadeIn 0.3s ease-in-out;
+        .nav a {
+            padding: 10px 14px;
+            border-radius: 999px;
+            color: var(--muted);
+            font-size: 0.94rem;
         }
 
-        .content-section.active {
-            display: block;
+        .nav a:hover {
+            background: var(--surface);
+            color: var(--ink);
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
+        .nav .cta {
+            background: var(--ink);
+            color: #fff;
+        }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .nav .cta:hover {
+            background: #1e293b;
+            color: #fff;
+        }
+
+        main {
+            padding: 34px 0 72px;
+        }
+
+        section {
+            scroll-margin-top: 84px;
+            margin-top: 28px;
+        }
+
+        .hero {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+            padding: 40px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.9fr);
+            gap: 30px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
         h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
+            margin: 18px 0 16px;
+            font-size: clamp(2.4rem, 5vw, 4.2rem);
+            line-height: 1.02;
+            letter-spacing: -0.05em;
+            max-width: 12ch;
         }
 
-        h2.section-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
+        .hero p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.85;
+            font-size: 1.03rem;
         }
 
-        p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* --- Lists / Grid --- */
-        .item-list {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .card {
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-decoration: none;
-            color: inherit;
+        .hero-actions,
+        .hero-pills,
+        .project-grid,
+        .strength-grid,
+        .about-grid,
+        .timeline-grid,
+        .credential-grid,
+        .contact-links,
+        .project-meta {
             display: flex;
-            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .hero-pills {
+            margin-top: 24px;
+        }
+
+        .pill,
+        .meta-tag {
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--surface-soft);
+            color: var(--muted);
+            font-size: 0.78rem;
+        }
+
+        .hero-actions {
+            margin-top: 24px;
+        }
+
+        .button {
+            display: inline-flex;
             align-items: center;
-            transition: all 0.2s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent);
-            box-shadow: 0 4px 20px var(--accent-glow);
-            background-color: var(--surface-color-hover);
-        }
-
-        .card-main {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .card-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.25rem;
+            justify-content: center;
+            padding: 13px 18px;
+            border-radius: 999px;
             font-weight: 700;
-            color: var(--accent);
+            transition: 0.2s ease;
         }
 
-        .card-desc {
+        .button:hover {
+            transform: translateY(-1px);
+        }
+
+        .button-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .button-secondary {
+            background: var(--surface-soft);
+            border: 1px solid var(--line);
+            color: var(--ink);
+        }
+
+        .snapshot {
+            background: var(--surface-soft);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 24px;
+            display: grid;
+            gap: 16px;
+            align-content: start;
+        }
+
+        .snapshot h2 {
+            margin: 0;
+            font-size: 1.1rem;
+            letter-spacing: -0.03em;
+        }
+
+        .snapshot-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .stat {
+            padding: 16px;
+            border-radius: 16px;
+            background: #fff;
+            border: 1px solid var(--line);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 1.9rem;
+            letter-spacing: -0.05em;
+            margin-bottom: 6px;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .snapshot-note {
+            color: var(--muted);
+            line-height: 1.75;
             font-size: 0.95rem;
-            color: var(--text-secondary);
         }
 
-        .card-icon {
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            transition: color 0.2s;
+        .section-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            padding: 34px;
         }
 
-        .card:hover .card-icon {
+        .section-head {
+            margin-bottom: 24px;
+        }
+
+        .section-kicker {
             color: var(--accent);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .section-head h2 {
+            margin: 10px 0 10px;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            letter-spacing: -0.04em;
+        }
+
+        .section-head p {
+            margin: 0;
+            max-width: 72ch;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 18px;
+        }
+
+        .about-box,
+        .strength-box,
+        .project-box,
+        .timeline-box,
+        .credential-box,
+        .contact-box {
+            background: var(--surface-soft);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            padding: 24px;
+        }
+
+        .about-box h3,
+        .strength-box h3,
+        .project-box h3,
+        .timeline-box h3,
+        .credential-box h3,
+        .contact-box h3 {
+            margin: 0 0 12px;
+            font-size: 1.18rem;
+            letter-spacing: -0.03em;
+        }
+
+        .about-box p,
+        .strength-box p,
+        .project-box p,
+        .timeline-box p,
+        .credential-box p,
+        .contact-box p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .about-points {
+            margin: 16px 0 0;
+            padding-left: 18px;
+            color: var(--muted);
+        }
+
+        .about-points li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .strength-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .strength-index {
+            display: inline-block;
+            margin-bottom: 12px;
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-family: "IBM Plex Mono", monospace;
+        }
+
+        .project-section + .project-section {
+            margin-top: 26px;
+        }
+
+        .project-section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+
+        .project-section-title h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            letter-spacing: -0.03em;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .project-box {
+            background: #fff;
+        }
+
+        .project-header,
+        .timeline-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .project-header span:first-child {
+            display: block;
+            color: var(--muted);
+            font-size: 0.9rem;
         }
 
         .badge {
-            font-size: 0.75rem;
-            padding: 0.2rem 0.6rem;
-            border-radius: 9999px;
-            background: rgba(245, 158, 11, 0.1);
-            color: var(--warning);
-            font-weight: 600;
-            margin-left: 10px;
-            vertical-align: middle;
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 10px;
+            border-radius: 999px;
+            font-size: 0.76rem;
+            white-space: nowrap;
         }
 
-        .badge.critical {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--danger);
+        .badge-critical {
+            background: var(--critical-soft);
+            color: var(--critical);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            body {
+        .badge-mobile {
+            background: var(--mobile-soft);
+            color: var(--mobile);
+        }
+
+        .badge-web {
+            background: var(--web-soft);
+            color: var(--web);
+        }
+
+        .project-meta {
+            margin-top: 16px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            margin-top: 18px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .timeline-date {
+            color: var(--accent);
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .timeline-role {
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        .credential-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .cert-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .contact-links {
+            margin-top: 18px;
+        }
+
+        .contact-links a {
+            padding: 12px 16px;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid var(--line);
+            font-weight: 700;
+        }
+
+        footer {
+            margin-top: 28px;
+            padding: 0 0 36px;
+            color: var(--muted);
+            text-align: center;
+            font-size: 0.94rem;
+        }
+
+        @media (max-width: 980px) {
+            .hero,
+            .about-grid,
+            .strength-grid,
+            .project-grid,
+            .timeline-grid,
+            .credential-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .wrap {
+                width: min(calc(100% - 20px), var(--width));
+            }
+
+            .topbar .wrap {
+                align-items: flex-start;
                 flex-direction: column;
             }
 
-            .sidebar {
+            .nav {
                 width: 100%;
-                height: auto;
-                position: relative;
-                padding: 1rem 0;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                padding-bottom: 6px;
             }
 
-            .main-content {
-                margin-left: 0;
-                padding: 2rem 1.5rem;
+            .hero,
+            .section-card {
+                padding: 22px;
+                border-radius: 22px;
+            }
+
+            .about-box,
+            .strength-box,
+            .project-box,
+            .timeline-box,
+            .credential-box,
+            .contact-box {
+                padding: 20px;
+            }
+
+            .snapshot-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            h1 {
+                max-width: 100%;
+                font-size: clamp(2.2rem, 12vw, 3.4rem);
+            }
+        }
+
+        @media (max-width: 520px) {
+            .snapshot-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-actions,
+            .contact-links {
+                flex-direction: column;
+            }
+
+            .button,
+            .contact-links a {
+                width: 100%;
             }
         }
     </style>
 </head>
-
 <body>
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <div class="profile-container">
-            <div class="profile-name">Sangrok Jeon</div>
-            <div class="profile-title">Security Engineer</div>
+    <header class="topbar">
+        <div class="wrap">
+            <div class="brand">
+                <strong>Sangrok Jeon</strong>
+                <span>Security Portfolio / Penetration Testing</span>
+            </div>
+            <nav class="nav" aria-label="Primary">
+                <a href="#about">About</a>
+                <a href="#strengths">Strengths</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#credentials">Credentials</a>
+                <a class="cta" href="https://github.com/sangrok-jeon" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </nav>
         </div>
+    </header>
 
-        <ul class="nav-menu">
-            <li class="nav-item active" data-target="home">Home</li>
-            <li class="nav-item" data-target="about">About Me</li>
+    <main class="wrap">
+        <section class="hero" id="about">
+            <div>
+                <div class="eyebrow">Security Portfolio</div>
+                <h1>공격 재현과 대응 방안을 함께 정리합니다.</h1>
+                <p>
+                    공공기관 보안 인프라 구축 및 운영 경험을 바탕으로, 실제 위협이 어떻게 악용되는지와
+                    운영 환경에서 어떤 식으로 완화할 수 있는지를 함께 보여주는 포트폴리오를 구성하고 있습니다.
+                    CVE 분석, 모바일 앱 진단, 웹 보안 연구를 각각 분리해 정리했습니다.
+                </p>
+                <div class="hero-pills">
+                    <span class="pill">Exploit Analysis</span>
+                    <span class="pill">Mobile App Testing</span>
+                    <span class="pill">Payload Evasion</span>
+                    <span class="pill">WAF Research</span>
+                    <span class="pill">Mitigation Thinking</span>
+                </div>
+                <div class="hero-actions">
+                    <a class="button button-primary" href="#projects">프로젝트 보기</a>
+                    <a class="button button-secondary" href="https://github.com/sangrok-jeon" target="_blank" rel="noopener noreferrer">GitHub 프로필</a>
+                </div>
+            </div>
 
-            <div class="nav-category">Penetration Testing</div>
-            <li class="nav-item" data-target="cve">CVE Analysis <span
-                    style="font-size: 0.7rem; color: var(--accent);">2</span></li>
-            <li class="nav-item" data-target="mobile">Mobile <span
-                    style="font-size: 0.7rem; color: var(--accent);">2</span></li>
-            <li class="nav-item" data-target="web">Web <span style="font-size: 0.7rem; color: var(--accent);">1</span>
-            </li>
-        </ul>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="main-content">
-
-        <!-- ==================== HOME SECTION ==================== -->
-        <section id="home" class="content-section active">
-            <h1>Welcome.</h1>
-            <p style="font-size: 1.25rem; color: var(--text-primary); margin-top: 1rem;">
-                정보 보안의 최전선 경험을 바탕으로, 모의해킹(Penetration Testing)을 수행합니다.
-            </p>
-            <p>
-                단순한 취약점 스캐닝을 넘어, 공격자의 관점에서 시스템의 실질적인 위협을 찾아냅니다.<br>
-                좌측 메뉴를 통해 제 소개와 각 카테고리별 모의해킹 프로젝트 및 취약점 연구(Repository)를 확인하실 수 있습니다.
-            </p>
+            <aside class="snapshot">
+                <h2>Quick Snapshot</h2>
+                <div class="snapshot-grid">
+                    <div class="stat">
+                        <strong>2</strong>
+                        <span>CVE 분석</span>
+                    </div>
+                    <div class="stat">
+                        <strong>2</strong>
+                        <span>모바일 연구</span>
+                    </div>
+                    <div class="stat">
+                        <strong>1</strong>
+                        <span>웹 보안 연구</span>
+                    </div>
+                    <div class="stat">
+                        <strong>5</strong>
+                        <span>주요 자격</span>
+                    </div>
+                </div>
+                <div class="snapshot-note">
+                    단순 PoC 작성에 머물지 않고, 공격 시나리오와 완화 전략을 함께 정리하는 방식으로 프로젝트를 구성했습니다.
+                </div>
+            </aside>
         </section>
 
-        <!-- ==================== ABOUT ME SECTION ==================== -->
-        <section id="about" class="content-section">
-            <h2 class="section-title">About Me</h2>
-            <div
-                style="background-color: var(--surface-color); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color);">
-                <p style="color: var(--text-primary); font-weight: 500;">전상록 (Sangrok Jeon)</p>
+        <section class="section-card">
+            <div class="section-head">
+                <div class="section-kicker">About</div>
+                <h2>어떤 배경에서 이 포트폴리오를 만들고 있는지</h2>
+                <p>보안 장비 운영과 통제 아키텍처 경험을 바탕으로, 모의해킹과 취약점 분석 결과를 더 실무적인 언어로 정리하려고 합니다.</p>
+            </div>
+            <div class="about-grid">
+                <article class="about-box">
+                    <h3>Profile Summary</h3>
+                    <p>
+                        국가 주요 공공기관 대상 보안 인프라 구축과 운영 프로젝트를 수행하면서 IPS, DDoS 방어 시스템,
+                        차세대 방화벽, TMS 등 여러 장비를 직접 다뤘습니다. 이 경험을 바탕으로 공격자가 어떤 지점을 노리고,
+                        운영자는 어떤 방식으로 방어를 설계해야 하는지 함께 보는 시각을 갖추게 되었습니다.
+                    </p>
+                </article>
+                <aside class="about-box">
+                    <h3>What I Focus On</h3>
+                    <ul class="about-points">
+                        <li>취약점의 존재보다 실제 악용 가능성과 영향도를 우선해 분석합니다.</li>
+                        <li>공격 코드와 우회 포인트뿐 아니라 운영 환경에서의 완화 전략도 함께 제시합니다.</li>
+                        <li>모바일, CVE, 웹 보안을 서로 분리된 주제가 아니라 연결된 실전 관점으로 정리합니다.</li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
 
-                <p style="margin-top: 1rem;">
-                    <strong>[Solution Engineer]</strong><br>
-                    <strong>SYSMATE (2024.01 ~ 2025.12)</strong><br>
-                    <strong>NICXION (Spin-off from SYSMATE) (2026.01 ~ Present)</strong><br>
-                    국가최고정보기관을 비롯한 주요 공공기관의 보안장비 구축 및 운영 프로젝트를 수행했으며, 특히 APEC 국제 행사에서는 보안장비 구성 설계, 구성도 작성, 라우팅·NAT 정책
-                    반영,정보 기관 연동 등
-                    구축 및 운영, 행사 종료 후 철거까지 전체 라이프사이클을 담당했습니다.<br>
-                    IPS, DDoS 방어 시스템, 차세대 방화벽(NGFW), TMS 등 네트워크 보안 장비를 운영하고 통제 아키텍처를 수립하는 역할을 수행했습니다.
-                </p>
+        <section class="section-card" id="strengths">
+            <div class="section-head">
+                <div class="section-kicker">Strengths</div>
+                <h2>포트폴리오의 정리 기준</h2>
+                <p>각 프로젝트는 같은 형식으로 읽히도록 구성했습니다. 무엇을 분석했는지, 왜 위험한지, 어떤 대응이 가능한지의 흐름을 유지합니다.</p>
+            </div>
+            <div class="strength-grid">
+                <article class="strength-box">
+                    <span class="strength-index">01</span>
+                    <h3>Exploitability 중심 분석</h3>
+                    <p>취약점 설명만 적지 않고, 실제 재현 가능성과 공격 흐름이 드러나도록 정리합니다.</p>
+                </article>
+                <article class="strength-box">
+                    <span class="strength-index">02</span>
+                    <h3>Defense 경험의 연결</h3>
+                    <p>네트워크 보안 장비 운영 경험을 바탕으로, 탐지와 우회가 만나는 지점까지 함께 생각합니다.</p>
+                </article>
+                <article class="strength-box">
+                    <span class="strength-index">03</span>
+                    <h3>Mitigation까지 포함</h3>
+                    <p>발견한 취약점을 어떤 식으로 완화할 수 있는지까지 이어서 설명하는 것을 중요하게 봅니다.</p>
+                </article>
+            </div>
+        </section>
 
-                <p style="margin-top: 1.5rem;">
-                    <strong>[Penetration Tester]</strong><br>
-                    경계 보안 솔루션들이 공격을 어떻게 차단하는지(Defense)에 대한 깊은 실전 이해도를 바탕으로,
-                    실제 시스템의 취약점을 찾아내고 검증하는 모의해킹(Offense) 영역에 전문성을 두고 있습니다.<br>
-                    발견된 취약점에 대해 단순 공격(PoC) 코드를 작성하는 것을 넘어, "인프라 레벨에서 어떻게 완화(Mitigate)할 것인가"를 함께 제시하는 실천적인 모의해커를 지향합니다.
-                </p>
+        <section class="section-card" id="projects">
+            <div class="section-head">
+                <div class="section-kicker">Projects</div>
+                <h2>카테고리별 프로젝트 정리</h2>
+                <p>프로젝트를 한 덩어리로 섞지 않고, CVE 분석, 모바일 보안, 웹 보안으로 구분해 볼 수 있도록 정리했습니다.</p>
+            </div>
 
-                <div style="margin-top: 2.5rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
-                    <div style="margin-bottom: 1.5rem;">
-                        <span
-                            style="font-weight: 600; color: var(--text-primary); display: block; margin-bottom: 0.5rem;">Certifications</span>
-                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                            <span
-                                style="background: rgba(226, 232, 240, 0.1); color: var(--text-primary); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.85rem; border: 1px solid var(--border-color);">정보보안기사</span>
-                            <span
-                                style="background: rgba(226, 232, 240, 0.1); color: var(--text-primary); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.85rem; border: 1px solid var(--border-color);">CPPG
-                                (개인정보관리사)</span>
-                            <span
-                                style="background: rgba(226, 232, 240, 0.1); color: var(--text-primary); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.85rem; border: 1px solid var(--border-color);">SQLD</span>
-                            <span
-                                style="background: rgba(226, 232, 240, 0.1); color: var(--text-primary); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.85rem; border: 1px solid var(--border-color);">리눅스마스터</span>
-                            <span
-                                style="background: rgba(226, 232, 240, 0.1); color: var(--text-primary); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.85rem; border: 1px solid var(--border-color);">네트워크관리사</span>
-                        </div>
-                    </div>
-
-                    <div>
-                        <span
-                            style="font-weight: 600; color: var(--text-primary); display: block; margin-bottom: 0.5rem;">Education
-                            & Training</span>
-                        <div style="display: flex; align-items: start; gap: 0.5rem;">
-                            <span style="color: var(--accent); font-size: 1.2rem;">⚡</span>
+            <div class="project-section">
+                <div class="project-section-title">
+                    <h3>CVE Analysis</h3>
+                    <span class="pill">2 Projects</span>
+                </div>
+                <div class="project-grid">
+                    <article class="project-box">
+                        <div class="project-header">
                             <div>
-                                <div style="color: var(--text-primary); font-weight: 500;">SK쉴더스 (SK shieldus)
-                                    화이트해커/보안전문가 과정 수료</div>
-                                <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.2rem;">오펜시브
-                                    시큐리티 및 모의해킹 실무 심화 트레이닝 이수 (2025.10 ~ 2026.04)</div>
+                                <span>Apache ActiveMQ RCE</span>
+                                <h3>CVE-2023-46604</h3>
                             </div>
+                            <span class="badge badge-critical">Critical 10.0</span>
                         </div>
-                    </div>
+                        <p>Apache ActiveMQ OpenWire 원격 코드 실행 취약점을 분석하고, 탐지 우회 페이로드 관점까지 함께 정리한 연구입니다.</p>
+                        <div class="project-meta">
+                            <span class="meta-tag">RCE</span>
+                            <span class="meta-tag">ActiveMQ</span>
+                            <span class="meta-tag">Payload Evasion</span>
+                        </div>
+                        <a class="project-link" href="https://github.com/sangrok-jeon/CVE-2023-46604-Analysis" target="_blank" rel="noopener noreferrer">GitHub 열기</a>
+                    </article>
+
+                    <article class="project-box">
+                        <div class="project-header">
+                            <div>
+                                <span>Apache Commons Text</span>
+                                <h3>CVE-2022-42889</h3>
+                            </div>
+                            <span class="badge badge-critical">Critical 9.8</span>
+                        </div>
+                        <p>Text4Shell 취약점의 동작 원리와 입력 처리 흐름을 분석하며, 원격 코드 실행 조건을 정리한 프로젝트입니다.</p>
+                        <div class="project-meta">
+                            <span class="meta-tag">Text4Shell</span>
+                            <span class="meta-tag">Input Resolution</span>
+                            <span class="meta-tag">RCE Analysis</span>
+                        </div>
+                        <a class="project-link" href="https://github.com/sangrok-jeon/CVE-2022-42889-Analysis" target="_blank" rel="noopener noreferrer">GitHub 열기</a>
+                    </article>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <div class="project-section-title">
+                    <h3>Mobile Security</h3>
+                    <span class="pill">2 Projects</span>
+                </div>
+                <div class="project-grid">
+                    <article class="project-box">
+                        <div class="project-header">
+                            <div>
+                                <span>Android Security Research</span>
+                                <h3>Frida 기반 루팅 탐지 우회</h3>
+                            </div>
+                            <span class="badge badge-mobile">Mobile</span>
+                        </div>
+                        <p>Frida를 활용해 금융권 앱에서 자주 보이는 루팅·탈옥 방지 로직을 우회하는 기법을 연구한 프로젝트입니다.</p>
+                        <div class="project-meta">
+                            <span class="meta-tag">Frida</span>
+                            <span class="meta-tag">Bypass</span>
+                            <span class="meta-tag">Root Detection</span>
+                        </div>
+                        <a class="project-link" href="https://github.com/sangrok-jeon/mobile-frida-bypass" target="_blank" rel="noopener noreferrer">GitHub 열기</a>
+                    </article>
+
+                    <article class="project-box">
+                        <div class="project-header">
+                            <div>
+                                <span>Android Component Security</span>
+                                <h3>Android Intent Hijacking</h3>
+                            </div>
+                            <span class="badge badge-mobile">Mobile</span>
+                        </div>
+                        <p>취약한 Intent 필터 설정으로 인해 발생할 수 있는 권한 상승 시나리오와 컴포넌트 노출 이슈를 분석했습니다.</p>
+                        <div class="project-meta">
+                            <span class="meta-tag">Intent</span>
+                            <span class="meta-tag">Privilege Escalation</span>
+                            <span class="meta-tag">Android</span>
+                        </div>
+                        <a class="project-link" href="https://github.com/sangrok-jeon/android-intent-hijacking" target="_blank" rel="noopener noreferrer">GitHub 열기</a>
+                    </article>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <div class="project-section-title">
+                    <h3>Web Security</h3>
+                    <span class="pill">1 Project</span>
+                </div>
+                <div class="project-grid">
+                    <article class="project-box">
+                        <div class="project-header">
+                            <div>
+                                <span>Detection Evasion Research</span>
+                                <h3>WAF Bypass Cheatsheet</h3>
+                            </div>
+                            <span class="badge badge-web">Web</span>
+                        </div>
+                        <p>보안 장비 실무 경험을 바탕으로 WAF 필터링 메커니즘과 탐지 우회 페이로드를 정리한 웹 보안 연구입니다.</p>
+                        <div class="project-meta">
+                            <span class="meta-tag">WAF</span>
+                            <span class="meta-tag">Bypass</span>
+                            <span class="meta-tag">Detection Logic</span>
+                        </div>
+                        <a class="project-link" href="https://github.com/sangrok-jeon/waf-bypass-cheatsheet" target="_blank" rel="noopener noreferrer">GitHub 열기</a>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- ==================== CVE SECTION ==================== -->
-        <section id="cve" class="content-section">
-            <h2 class="section-title">CVE Analysis</h2>
-            <p>제가 분석하고 리뷰한 주요 CVE(Common Vulnerabilities and Exposures) 목록입니다. 클릭하시면 해당 깃허브 저장소(Repo)로 이동합니다.</p>
-
-            <div class="item-list">
-                <a href="https://github.com/sangrok-jeon/CVE-2023-46604-Analysis" target="_blank" class="card">
-                    <div class="card-main">
-                        <div class="card-title">CVE-2023-46604 <span class="badge critical">CRITICAL 10</span></div>
-                        <div class="card-desc">Apache ActiveMQ 원격 코드 실행(RCE) 취약점 분석 및 탐지 우회 페이로드</div>
+        <section class="section-card" id="experience">
+            <div class="section-head">
+                <div class="section-kicker">Experience</div>
+                <h2>경력과 학습 흐름</h2>
+                <p>운영 경험에서 시작해 모의해킹과 취약점 연구로 확장해온 과정을 간단하게 정리했습니다.</p>
+            </div>
+            <div class="timeline-grid">
+                <article class="timeline-box">
+                    <div class="timeline-top">
+                        <span class="timeline-date">2024.01 - 2025.12</span>
                     </div>
-                    <div class="card-icon">→</div>
-                </a>
+                    <h3>SYSMATE</h3>
+                    <div class="timeline-role">Solution Engineer</div>
+                    <p>공공기관 보안장비 구축 및 운영 프로젝트를 수행하며 IPS, DDoS 방어 시스템, NGFW, TMS 환경을 다뤘습니다.</p>
+                </article>
 
-                <a href="https://github.com/sangrok-jeon/CVE-2022-42889-Analysis" target="_blank" class="card">
-                    <div class="card-main">
-                        <div class="card-title">CVE-2022-42889 <span class="badge critical">CRITICAL 9.8</span></div>
-                        <div class="card-desc">Apache Commons Text 원격 코드 실행(RCE) 취약점 분석 (Text4Shell)</div>
+                <article class="timeline-box">
+                    <div class="timeline-top">
+                        <span class="timeline-date">2026.01 - Present</span>
                     </div>
-                    <div class="card-icon">→</div>
-                </a>
+                    <h3>NICXION</h3>
+                    <div class="timeline-role">Spin-off from SYSMATE</div>
+                    <p>보안 인프라 운영 경험을 이어가며 통제 아키텍처와 실무적인 방어 체계를 계속 확장하고 있습니다.</p>
+                </article>
 
+                <article class="timeline-box">
+                    <div class="timeline-top">
+                        <span class="timeline-date">2025.10 - 2026.04</span>
+                    </div>
+                    <h3>SK shieldus</h3>
+                    <div class="timeline-role">White Hacker / Security Expert Course</div>
+                    <p>오펜시브 시큐리티 및 모의해킹 실무 심화 트레이닝을 통해 재현 가능한 분석과 공격 기법 정리에 집중했습니다.</p>
+                </article>
+
+                <article class="timeline-box">
+                    <div class="timeline-top">
+                        <span class="timeline-date">Positioning</span>
+                    </div>
+                    <h3>Penetration Tester</h3>
+                    <div class="timeline-role">Offense with Mitigation Context</div>
+                    <p>단순 취약점 확인이 아니라 공격 시나리오와 현실적인 완화 방안을 함께 제시하는 방향을 지향합니다.</p>
+                </article>
             </div>
         </section>
 
-        <!-- ==================== MOBILE SECTION ==================== -->
-        <section id="mobile" class="content-section">
-            <h2 class="section-title">Mobile App Vulnerability</h2>
-            <p>Android/iOS 모바일 어플리케이션 모의해킹 및 취약점 진단 연구 내용입니다.</p>
-
-            <div class="item-list">
-                <a href="https://github.com/sangrok-jeon/mobile-frida-bypass" target="_blank" class="card">
-                    <div class="card-main">
-                        <div class="card-title">mobile-frida-bypass</div>
-                        <div class="card-desc">Frida를 활용한 금융권 루팅/탈옥 방지 솔루션 우회 기법 연구</div>
+        <section class="section-card" id="credentials">
+            <div class="section-head">
+                <div class="section-kicker">Credentials</div>
+                <h2>자격과 추가 확인 경로</h2>
+                <p>기초 역량을 보여주는 자격 사항과, 실제 프로젝트를 더 살펴볼 수 있는 외부 링크를 함께 배치했습니다.</p>
+            </div>
+            <div class="credential-grid">
+                <article class="credential-box">
+                    <h3>Certifications</h3>
+                    <p>보안, 개인정보, 데이터, 시스템, 네트워크 전반의 기반 역량을 검증해온 자격 사항입니다.</p>
+                    <div class="cert-list">
+                        <span class="pill">정보보안기사</span>
+                        <span class="pill">CPPG</span>
+                        <span class="pill">SQLD</span>
+                        <span class="pill">리눅스마스터</span>
+                        <span class="pill">네트워크관리사</span>
                     </div>
-                    <div class="card-icon">→</div>
-                </a>
+                </article>
 
-                <a href="https://github.com/sangrok-jeon/android-intent-hijacking" target="_blank" class="card">
-                    <div class="card-main">
-                        <div class="card-title">android-intent-hijacking</div>
-                        <div class="card-desc">취약한 Intent 필터 설정으로 인한 권한 상승 취약점(Privilege Escalation) 분석</div>
+                <aside class="contact-box">
+                    <h3>Explore More</h3>
+                    <p>상세 분석은 각 GitHub 저장소의 README와 보고서에 정리되어 있습니다. 프로젝트별 재현 방식과 분석 범위를 더 확인할 수 있습니다.</p>
+                    <div class="contact-links">
+                        <a href="https://github.com/sangrok-jeon" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+                        <a href="#projects">Selected Work</a>
                     </div>
-                    <div class="card-icon">→</div>
-                </a>
+                </aside>
             </div>
         </section>
-
-        <!-- ==================== WEB SECTION ==================== -->
-        <section id="web" class="content-section">
-            <h2 class="section-title">Web Security</h2>
-            <p>웹 서비스 인프라와 애플리케이션 보안 연구입니다.</p>
-
-            <div class="item-list">
-                <a href="https://github.com/sangrok-jeon/waf-bypass-cheatsheet" target="_blank" class="card">
-                    <div class="card-main">
-                        <div class="card-title">waf-bypass-cheatsheet</div>
-                        <div class="card-desc">보안 장비 경험을 살린 WAF(웹방화벽) 탐지 우회 페이로드 및 필터링 메커니즘 심층 분석</div>
-                    </div>
-                    <div class="card-icon">→</div>
-                </a>
-            </div>
-        </section>
-
     </main>
 
-    <!-- Navigation Script -->
-    <script>
-        const navItems = document.querySelectorAll('.nav-item');
-        const sections = document.querySelectorAll('.content-section');
-
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                // Remove active classes
-                navItems.forEach(nav => nav.classList.remove('active'));
-                sections.forEach(sec => sec.classList.remove('active'));
-
-                // Add active class to clicked nav
-                item.classList.add('active');
-
-                // Show corresponding section
-                const targetId = item.getAttribute('data-target');
-                document.getElementById(targetId).classList.add('active');
-            });
-        });
-    </script>
+    <footer class="wrap">
+        Organized around CVE analysis, mobile research, web security, and mitigation-oriented thinking.
+    </footer>
 </body>
-
 </html>
