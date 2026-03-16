@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sangrok Jeon | Security Portfolio</title>
-    <meta name="description" content="전상록의 보안 포트폴리오입니다. CVE 분석, 모바일 앱 진단, 웹 보안 연구를 체계적으로 정리했습니다.">
+    <meta name="description" content="전상록의 보안 포트폴리오입니다. CVE 분석, 모바일 앱 진단, 웹 보안 연구를 실무 관점에서 정리했습니다.">
     <meta name="theme-color" content="#0f172a">
     <meta property="og:title" content="Sangrok Jeon | Security Portfolio">
-    <meta property="og:description" content="공격 재현과 완화 방안을 함께 다루는 보안 포트폴리오입니다.">
+    <meta property="og:description" content="실전형 취약점 분석과 모의해킹 프로젝트를 정리한 보안 포트폴리오입니다.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sangrok-jeon.github.io/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -169,10 +169,11 @@
 
         h1 {
             margin: 18px 0 16px;
-            font-size: clamp(2.4rem, 5vw, 4.2rem);
-            line-height: 1.02;
+            font-size: clamp(2rem, 3.4vw, 3.35rem);
+            line-height: 1.08;
             letter-spacing: -0.05em;
-            max-width: 12ch;
+            max-width: none;
+            white-space: nowrap;
         }
 
         .hero p {
@@ -562,6 +563,7 @@
             h1 {
                 max-width: 100%;
                 font-size: clamp(2.2rem, 12vw, 3.4rem);
+                white-space: normal;
             }
         }
 
@@ -590,11 +592,11 @@
                 <span>Security Portfolio / Penetration Testing</span>
             </div>
             <nav class="nav" aria-label="Primary">
-                <a href="#about">About</a>
-                <a href="#strengths">Strengths</a>
-                <a href="#projects">Projects</a>
-                <a href="#experience">Experience</a>
-                <a href="#credentials">Credentials</a>
+                <a href="#about">소개</a>
+                <a href="#strengths">강점</a>
+                <a href="#projects">프로젝트</a>
+                <a href="#experience">경력</a>
+                <a href="#credentials">자격</a>
                 <a class="cta" href="https://github.com/sangrok-jeon" target="_blank" rel="noopener noreferrer">GitHub</a>
             </nav>
         </div>
@@ -604,11 +606,10 @@
         <section class="hero" id="about">
             <div>
                 <div class="eyebrow">Security Portfolio</div>
-                <h1>공격 재현과 대응 방안을 함께 정리합니다.</h1>
+                <h1>실전형 취약점 분석 포트폴리오</h1>
                 <p>
-                    공공기관 보안 인프라 구축 및 운영 경험을 바탕으로, 실제 위협이 어떻게 악용되는지와
-                    운영 환경에서 어떤 식으로 완화할 수 있는지를 함께 보여주는 포트폴리오를 구성하고 있습니다.
-                    CVE 분석, 모바일 앱 진단, 웹 보안 연구를 각각 분리해 정리했습니다.
+                    보안 인프라 구축·운영 경험을 바탕으로 CVE 분석, 모바일 앱 진단, 웹 보안 연구를 정리했습니다.
+                    단순한 취약점 나열이 아니라 악용 가능성, 우회 포인트, 대응 방향까지 함께 보여주는 구성을 지향합니다.
                 </p>
                 <div class="hero-pills">
                     <span class="pill">Exploit Analysis</span>
@@ -624,7 +625,7 @@
             </div>
 
             <aside class="snapshot">
-                <h2>Quick Snapshot</h2>
+                <h2>핵심 요약</h2>
                 <div class="snapshot-grid">
                     <div class="stat">
                         <strong>2</strong>
@@ -644,32 +645,32 @@
                     </div>
                 </div>
                 <div class="snapshot-note">
-                    단순 PoC 작성에 머물지 않고, 공격 시나리오와 완화 전략을 함께 정리하는 방식으로 프로젝트를 구성했습니다.
+                    각 프로젝트는 공격 시나리오와 기술적 분석, 그리고 실제 운영 관점의 대응 방향까지 함께 정리하는 방식을 기준으로 구성했습니다.
                 </div>
             </aside>
         </section>
 
         <section class="section-card">
             <div class="section-head">
-                <div class="section-kicker">About</div>
-                <h2>어떤 배경에서 이 포트폴리오를 만들고 있는지</h2>
-                <p>보안 장비 운영과 통제 아키텍처 경험을 바탕으로, 모의해킹과 취약점 분석 결과를 더 실무적인 언어로 정리하려고 합니다.</p>
+                <div class="section-kicker">소개</div>
+                <h2>운영 경험을 분석 역량으로 연결하고 있습니다</h2>
+                <p>네트워크 보안 장비 운영과 통제 아키텍처 경험을 바탕으로, 취약점 분석 결과를 더 실무적인 관점에서 정리하고 있습니다.</p>
             </div>
             <div class="about-grid">
                 <article class="about-box">
-                    <h3>Profile Summary</h3>
+                    <h3>요약</h3>
                     <p>
-                        국가 주요 공공기관 대상 보안 인프라 구축과 운영 프로젝트를 수행하면서 IPS, DDoS 방어 시스템,
-                        차세대 방화벽, TMS 등 여러 장비를 직접 다뤘습니다. 이 경험을 바탕으로 공격자가 어떤 지점을 노리고,
-                        운영자는 어떤 방식으로 방어를 설계해야 하는지 함께 보는 시각을 갖추게 되었습니다.
+                        국가 주요 공공기관 대상 보안 인프라 구축 및 운영 프로젝트를 수행하며 IPS, DDoS 방어 시스템,
+                        차세대 방화벽, TMS 등 다양한 장비를 직접 다뤘습니다. 이러한 경험을 바탕으로 공격자가 노리는 지점과
+                        운영자가 설계해야 하는 방어 지점을 함께 보는 시각을 갖추게 되었습니다.
                     </p>
                 </article>
                 <aside class="about-box">
-                    <h3>What I Focus On</h3>
+                    <h3>분석 기준</h3>
                     <ul class="about-points">
                         <li>취약점의 존재보다 실제 악용 가능성과 영향도를 우선해 분석합니다.</li>
                         <li>공격 코드와 우회 포인트뿐 아니라 운영 환경에서의 완화 전략도 함께 제시합니다.</li>
-                        <li>모바일, CVE, 웹 보안을 서로 분리된 주제가 아니라 연결된 실전 관점으로 정리합니다.</li>
+                        <li>CVE, 모바일, 웹 보안을 각각 분리하되 같은 분석 기준으로 일관되게 정리합니다.</li>
                     </ul>
                 </aside>
             </div>
@@ -677,34 +678,34 @@
 
         <section class="section-card" id="strengths">
             <div class="section-head">
-                <div class="section-kicker">Strengths</div>
-                <h2>포트폴리오의 정리 기준</h2>
-                <p>각 프로젝트는 같은 형식으로 읽히도록 구성했습니다. 무엇을 분석했는지, 왜 위험한지, 어떤 대응이 가능한지의 흐름을 유지합니다.</p>
+                <div class="section-kicker">강점</div>
+                <h2>프로젝트를 정리하는 기준</h2>
+                <p>모든 프로젝트는 같은 흐름으로 읽히도록 구성했습니다. 무엇을 분석했는지, 왜 위험한지, 어떤 대응이 가능한지를 일관되게 보여줍니다.</p>
             </div>
             <div class="strength-grid">
                 <article class="strength-box">
                     <span class="strength-index">01</span>
                     <h3>Exploitability 중심 분석</h3>
-                    <p>취약점 설명만 적지 않고, 실제 재현 가능성과 공격 흐름이 드러나도록 정리합니다.</p>
+                    <p>취약점 설명에 그치지 않고 실제 재현 가능성과 공격 흐름이 드러나도록 정리합니다.</p>
                 </article>
                 <article class="strength-box">
                     <span class="strength-index">02</span>
                     <h3>Defense 경험의 연결</h3>
-                    <p>네트워크 보안 장비 운영 경험을 바탕으로, 탐지와 우회가 만나는 지점까지 함께 생각합니다.</p>
+                    <p>네트워크 보안 장비 운영 경험을 바탕으로, 탐지와 우회가 맞닿는 지점까지 함께 고려합니다.</p>
                 </article>
                 <article class="strength-box">
                     <span class="strength-index">03</span>
                     <h3>Mitigation까지 포함</h3>
-                    <p>발견한 취약점을 어떤 식으로 완화할 수 있는지까지 이어서 설명하는 것을 중요하게 봅니다.</p>
+                    <p>분석 결과를 끝내지 않고, 어떤 방식으로 완화할 수 있는지까지 이어서 설명하는 것을 중요하게 봅니다.</p>
                 </article>
             </div>
         </section>
 
         <section class="section-card" id="projects">
             <div class="section-head">
-                <div class="section-kicker">Projects</div>
-                <h2>카테고리별 프로젝트 정리</h2>
-                <p>프로젝트를 한 덩어리로 섞지 않고, CVE 분석, 모바일 보안, 웹 보안으로 구분해 볼 수 있도록 정리했습니다.</p>
+                <div class="section-kicker">프로젝트</div>
+                <h2>카테고리별 주요 프로젝트</h2>
+                <p>프로젝트를 한 화면에 모두 섞지 않고, CVE 분석, 모바일 보안, 웹 보안으로 구분해 필요한 영역을 바로 볼 수 있도록 정리했습니다.</p>
             </div>
 
             <div class="project-section">
@@ -819,9 +820,9 @@
 
         <section class="section-card" id="experience">
             <div class="section-head">
-                <div class="section-kicker">Experience</div>
-                <h2>경력과 학습 흐름</h2>
-                <p>운영 경험에서 시작해 모의해킹과 취약점 연구로 확장해온 과정을 간단하게 정리했습니다.</p>
+                <div class="section-kicker">경력</div>
+                <h2>실무 경험과 학습 이력</h2>
+                <p>운영 경험에서 출발해 모의해킹과 취약점 연구로 확장해온 흐름을 간단히 정리했습니다.</p>
             </div>
             <div class="timeline-grid">
                 <article class="timeline-box">
@@ -864,13 +865,13 @@
 
         <section class="section-card" id="credentials">
             <div class="section-head">
-                <div class="section-kicker">Credentials</div>
-                <h2>자격과 추가 확인 경로</h2>
-                <p>기초 역량을 보여주는 자격 사항과, 실제 프로젝트를 더 살펴볼 수 있는 외부 링크를 함께 배치했습니다.</p>
+                <div class="section-kicker">자격</div>
+                <h2>자격 사항과 참고 링크</h2>
+                <p>기초 역량을 보여주는 자격 사항과, 실제 프로젝트를 더 확인할 수 있는 링크를 함께 정리했습니다.</p>
             </div>
             <div class="credential-grid">
                 <article class="credential-box">
-                    <h3>Certifications</h3>
+                    <h3>자격 사항</h3>
                     <p>보안, 개인정보, 데이터, 시스템, 네트워크 전반의 기반 역량을 검증해온 자격 사항입니다.</p>
                     <div class="cert-list">
                         <span class="pill">정보보안기사</span>
@@ -882,11 +883,11 @@
                 </article>
 
                 <aside class="contact-box">
-                    <h3>Explore More</h3>
-                    <p>상세 분석은 각 GitHub 저장소의 README와 보고서에 정리되어 있습니다. 프로젝트별 재현 방식과 분석 범위를 더 확인할 수 있습니다.</p>
+                    <h3>추가 확인</h3>
+                    <p>상세 분석은 각 GitHub 저장소의 README와 보고서에 정리되어 있습니다. 프로젝트별 재현 방식과 분석 범위를 추가로 확인할 수 있습니다.</p>
                     <div class="contact-links">
                         <a href="https://github.com/sangrok-jeon" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
-                        <a href="#projects">Selected Work</a>
+                        <a href="#projects">프로젝트 보기</a>
                     </div>
                 </aside>
             </div>
@@ -894,7 +895,7 @@
     </main>
 
     <footer class="wrap">
-        Organized around CVE analysis, mobile research, web security, and mitigation-oriented thinking.
+        CVE analysis, mobile security, web security, and mitigation-oriented thinking.
     </footer>
 </body>
 </html>
