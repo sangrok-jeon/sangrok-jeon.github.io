@@ -169,9 +169,9 @@
 
         h1 {
             margin: 18px 0 16px;
-            font-size: clamp(2rem, 3.4vw, 3.35rem);
-            line-height: 1.08;
-            letter-spacing: -0.05em;
+            font-size: clamp(1.9rem, 2.6vw, 2.75rem);
+            line-height: 1.12;
+            letter-spacing: -0.04em;
             max-width: none;
             white-space: nowrap;
         }
@@ -186,7 +186,7 @@
         .hero-role {
             margin: 0 0 14px;
             color: var(--ink);
-            font-size: 1.02rem;
+            font-size: 0.98rem;
             font-weight: 700;
             letter-spacing: -0.02em;
         }
@@ -256,7 +256,7 @@
         }
 
         .hero-actions {
-            margin-top: 24px;
+            margin-top: 18px;
         }
 
         .button {
@@ -432,7 +432,8 @@
             margin-top: 26px;
         }
 
-        .project-section-title {
+        .project-section-title,
+        .group-title {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -440,7 +441,8 @@
             margin-bottom: 14px;
         }
 
-        .project-section-title h3 {
+        .project-section-title h3,
+        .group-title h3 {
             margin: 0;
             font-size: 1.2rem;
             letter-spacing: -0.03em;
@@ -452,8 +454,65 @@
             gap: 18px;
         }
 
+        .project-grid.featured-grid {
+            margin-bottom: 18px;
+        }
+
         .project-box {
             background: #fff;
+        }
+
+        .archive-box {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            padding: 24px;
+        }
+
+        .archive-box h4 {
+            margin: 0 0 8px;
+            font-size: 1.02rem;
+            letter-spacing: -0.03em;
+        }
+
+        .archive-box p {
+            margin: 0 0 16px;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        .archive-list {
+            display: grid;
+            gap: 0;
+        }
+
+        .archive-row {
+            display: grid;
+            grid-template-columns: minmax(180px, 0.7fr) minmax(0, 1.5fr) auto auto;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 0;
+        }
+
+        .archive-row + .archive-row {
+            border-top: 1px solid var(--line);
+        }
+
+        .archive-id {
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .archive-desc {
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .archive-link {
+            color: var(--accent);
+            font-weight: 700;
+            white-space: nowrap;
         }
 
         .project-header,
@@ -512,6 +571,14 @@
             gap: 18px;
         }
 
+        .timeline-grid.single {
+            grid-template-columns: 1fr;
+        }
+
+        .experience-group + .experience-group {
+            margin-top: 26px;
+        }
+
         .timeline-date {
             color: var(--accent);
             font-size: 0.8rem;
@@ -566,6 +633,12 @@
             .credential-grid {
                 grid-template-columns: 1fr;
             }
+
+            .archive-row {
+                grid-template-columns: 1fr;
+                align-items: start;
+                gap: 10px;
+            }
         }
 
         @media (max-width: 720px) {
@@ -606,7 +679,7 @@
 
             h1 {
                 max-width: 100%;
-                font-size: clamp(2.2rem, 12vw, 3.4rem);
+                font-size: clamp(2rem, 11vw, 2.6rem);
                 white-space: normal;
             }
 
@@ -672,7 +745,6 @@
                 <div class="hero-actions">
                     <a class="button button-primary" href="https://github.com/sangrok-jeon" target="_blank" rel="noopener noreferrer">GitHub</a>
                     <a class="button button-secondary" href="https://94-rokstar.tistory.com/" target="_blank" rel="noopener noreferrer">Blog</a>
-                    <a class="button button-secondary" href="mailto:jsr9408@gmail.com">Email</a>
                 </div>
             </div>
 
@@ -757,15 +829,15 @@
             <div class="section-head">
                 <div class="section-kicker">프로젝트</div>
                 <h2>카테고리별 주요 프로젝트</h2>
-                <p>프로젝트를 한 화면에 모두 섞지 않고, CVE 분석, 모바일 보안, 웹 보안으로 구분해 필요한 영역을 바로 볼 수 있도록 정리했습니다.</p>
+                <p>대표 프로젝트는 카드로 강조하고, 개수가 많아질 수 있는 항목은 별도 목록으로 압축해 한눈에 볼 수 있도록 구성했습니다.</p>
             </div>
 
             <div class="project-section">
                 <div class="project-section-title">
                     <h3>CVE Analysis</h3>
-                    <span class="pill">2 Projects</span>
+                    <span class="pill">2 Total</span>
                 </div>
-                <div class="project-grid">
+                <div class="project-grid featured-grid">
                     <article class="project-box">
                         <div class="project-header">
                             <div>
@@ -800,14 +872,32 @@
                         <a class="project-link" href="https://github.com/sangrok-jeon/CVE-2022-42889-Analysis" target="_blank" rel="noopener noreferrer">GitHub 열기</a>
                     </article>
                 </div>
+                <div class="archive-box">
+                    <h4>All CVE Research</h4>
+                    <p>대표 CVE는 카드로 먼저 보여주고, 전체 CVE 목록은 아래처럼 압축된 인덱스 형태로 누적하는 구조를 기준으로 잡았습니다.</p>
+                    <div class="archive-list">
+                        <div class="archive-row">
+                            <div class="archive-id">CVE-2023-46604</div>
+                            <div class="archive-desc">Apache ActiveMQ OpenWire 원격 코드 실행 취약점 분석 및 우회 페이로드 연구</div>
+                            <span class="badge badge-critical">Critical 10.0</span>
+                            <a class="archive-link" href="https://github.com/sangrok-jeon/CVE-2023-46604-Analysis" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        </div>
+                        <div class="archive-row">
+                            <div class="archive-id">CVE-2022-42889</div>
+                            <div class="archive-desc">Apache Commons Text Text4Shell 취약점 원리 및 RCE 조건 분석</div>
+                            <span class="badge badge-critical">Critical 9.8</span>
+                            <a class="archive-link" href="https://github.com/sangrok-jeon/CVE-2022-42889-Analysis" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="project-section">
                 <div class="project-section-title">
                     <h3>Mobile Security</h3>
-                    <span class="pill">2 Projects</span>
+                    <span class="pill">2 Total</span>
                 </div>
-                <div class="project-grid">
+                <div class="project-grid featured-grid">
                     <article class="project-box">
                         <div class="project-header">
                             <div>
@@ -842,6 +932,24 @@
                         <a class="project-link" href="https://github.com/sangrok-jeon/android-intent-hijacking" target="_blank" rel="noopener noreferrer">GitHub 열기</a>
                     </article>
                 </div>
+                <div class="archive-box">
+                    <h4>All Mobile Research</h4>
+                    <p>모바일 프로젝트도 대표 사례는 카드로 먼저 보여주고, 개수가 늘어나면 아래 목록에 누적하는 방식으로 확장할 수 있도록 구성했습니다.</p>
+                    <div class="archive-list">
+                        <div class="archive-row">
+                            <div class="archive-id">mobile-frida-bypass</div>
+                            <div class="archive-desc">Frida를 활용한 루팅·탈옥 방지 로직 우회 연구</div>
+                            <span class="badge badge-mobile">Mobile</span>
+                            <a class="archive-link" href="https://github.com/sangrok-jeon/mobile-frida-bypass" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        </div>
+                        <div class="archive-row">
+                            <div class="archive-id">android-intent-hijacking</div>
+                            <div class="archive-desc">Android Intent 구성 취약점으로 인한 권한 상승 시나리오 분석</div>
+                            <span class="badge badge-mobile">Mobile</span>
+                            <a class="archive-link" href="https://github.com/sangrok-jeon/android-intent-hijacking" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="project-section">
@@ -873,45 +981,50 @@
         <section class="section-card" id="experience">
             <div class="section-head">
                 <div class="section-kicker">경력</div>
-                <h2>실무 경험과 학습 이력</h2>
-                <p>운영 경험에서 출발해 모의해킹과 취약점 연구로 확장해온 흐름을 간단히 정리했습니다.</p>
+                <h2>실무 경험과 학습 경험</h2>
+                <p>실제 수행한 업무와 별도로, 모의해킹과 취약점 분석 역량을 확장하기 위해 진행한 학습 경험을 구분해 정리했습니다.</p>
             </div>
-            <div class="timeline-grid">
-                <article class="timeline-box">
-                    <div class="timeline-top">
-                        <span class="timeline-date">2024.01 - 2025.12</span>
-                    </div>
-                    <h3>SYSMATE</h3>
-                    <div class="timeline-role">Solution Engineer</div>
-                    <p>공공기관 보안장비 구축 및 운영 프로젝트를 수행하며 IPS, DDoS 방어 시스템, NGFW, TMS 환경을 다뤘습니다.</p>
-                </article>
+            <div class="experience-group">
+                <div class="group-title">
+                    <h3>실무 경험</h3>
+                    <span class="pill">2 Positions</span>
+                </div>
+                <div class="timeline-grid">
+                    <article class="timeline-box">
+                        <div class="timeline-top">
+                            <span class="timeline-date">2024.01 - 2025.12</span>
+                        </div>
+                        <h3>SYSMATE</h3>
+                        <div class="timeline-role">Solution Engineer</div>
+                        <p>공공기관 보안장비 구축 및 운영 프로젝트를 수행하며 IPS, DDoS 방어 시스템, NGFW, TMS 환경을 직접 다뤘습니다.</p>
+                    </article>
 
-                <article class="timeline-box">
-                    <div class="timeline-top">
-                        <span class="timeline-date">2026.01 - Present</span>
-                    </div>
-                    <h3>NICXION</h3>
-                    <div class="timeline-role">Spin-off from SYSMATE</div>
-                    <p>보안 인프라 운영 경험을 이어가며 통제 아키텍처와 실무적인 방어 체계를 계속 확장하고 있습니다.</p>
-                </article>
+                    <article class="timeline-box">
+                        <div class="timeline-top">
+                            <span class="timeline-date">2026.01 - Present</span>
+                        </div>
+                        <h3>NICXION</h3>
+                        <div class="timeline-role">Spin-off from SYSMATE</div>
+                        <p>보안 인프라 운영 경험을 이어가며 통제 아키텍처와 실무적인 방어 체계를 계속 확장하고 있습니다.</p>
+                    </article>
+                </div>
+            </div>
 
-                <article class="timeline-box">
-                    <div class="timeline-top">
-                        <span class="timeline-date">2025.10 - 2026.04</span>
-                    </div>
-                    <h3>SK shieldus</h3>
-                    <div class="timeline-role">White Hacker / Security Expert Course</div>
-                    <p>오펜시브 시큐리티 및 모의해킹 실무 심화 트레이닝을 통해 재현 가능한 분석과 공격 기법 정리에 집중했습니다.</p>
-                </article>
-
-                <article class="timeline-box">
-                    <div class="timeline-top">
-                        <span class="timeline-date">Positioning</span>
-                    </div>
-                    <h3>Penetration Tester</h3>
-                    <div class="timeline-role">Offense with Mitigation Context</div>
-                    <p>단순 취약점 확인이 아니라 공격 시나리오와 현실적인 완화 방안을 함께 제시하는 방향을 지향합니다.</p>
-                </article>
+            <div class="experience-group">
+                <div class="group-title">
+                    <h3>학습 경험</h3>
+                    <span class="pill">1 Course</span>
+                </div>
+                <div class="timeline-grid single">
+                    <article class="timeline-box">
+                        <div class="timeline-top">
+                            <span class="timeline-date">2025.10 - 2026.04</span>
+                        </div>
+                        <h3>SK shieldus</h3>
+                        <div class="timeline-role">White Hacker / Security Expert Course</div>
+                        <p>오펜시브 시큐리티 및 모의해킹 실무 심화 트레이닝을 통해 재현 가능한 분석, 공격 기법 이해, 실습 기반 검증 역량을 집중적으로 다졌습니다.</p>
+                    </article>
+                </div>
             </div>
         </section>
 
