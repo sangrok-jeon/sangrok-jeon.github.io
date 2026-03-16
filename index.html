@@ -454,65 +454,8 @@
             gap: 18px;
         }
 
-        .project-grid.featured-grid {
-            margin-bottom: 18px;
-        }
-
         .project-box {
             background: #fff;
-        }
-
-        .archive-box {
-            background: #fff;
-            border: 1px solid var(--line);
-            border-radius: var(--radius-md);
-            padding: 24px;
-        }
-
-        .archive-box h4 {
-            margin: 0 0 8px;
-            font-size: 1.02rem;
-            letter-spacing: -0.03em;
-        }
-
-        .archive-box p {
-            margin: 0 0 16px;
-            color: var(--muted);
-            line-height: 1.75;
-        }
-
-        .archive-list {
-            display: grid;
-            gap: 0;
-        }
-
-        .archive-row {
-            display: grid;
-            grid-template-columns: minmax(180px, 0.7fr) minmax(0, 1.5fr) auto auto;
-            align-items: center;
-            gap: 14px;
-            padding: 16px 0;
-        }
-
-        .archive-row + .archive-row {
-            border-top: 1px solid var(--line);
-        }
-
-        .archive-id {
-            font-family: "IBM Plex Mono", monospace;
-            font-weight: 700;
-            color: var(--ink);
-        }
-
-        .archive-desc {
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        .archive-link {
-            color: var(--accent);
-            font-weight: 700;
-            white-space: nowrap;
         }
 
         .project-header,
@@ -634,11 +577,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .archive-row {
-                grid-template-columns: 1fr;
-                align-items: start;
-                gap: 10px;
-            }
         }
 
         @media (max-width: 720px) {
@@ -829,15 +767,15 @@
             <div class="section-head">
                 <div class="section-kicker">프로젝트</div>
                 <h2>카테고리별 주요 프로젝트</h2>
-                <p>대표 프로젝트는 카드로 강조하고, 개수가 많아질 수 있는 항목은 별도 목록으로 압축해 한눈에 볼 수 있도록 구성했습니다.</p>
+                <p>현재 공개된 주요 프로젝트를 카테고리별로 정리했습니다. 각 프로젝트는 핵심 주제와 분석 방향이 바로 보이도록 카드 형태로 구성했습니다.</p>
             </div>
 
             <div class="project-section">
                 <div class="project-section-title">
                     <h3>CVE Analysis</h3>
-                    <span class="pill">2 Total</span>
+                    <span class="pill">2 Projects</span>
                 </div>
-                <div class="project-grid featured-grid">
+                <div class="project-grid">
                     <article class="project-box">
                         <div class="project-header">
                             <div>
@@ -872,32 +810,14 @@
                         <a class="project-link" href="https://github.com/sangrok-jeon/CVE-2022-42889-Analysis" target="_blank" rel="noopener noreferrer">GitHub 열기</a>
                     </article>
                 </div>
-                <div class="archive-box">
-                    <h4>All CVE Research</h4>
-                    <p>대표 CVE는 카드로 먼저 보여주고, 전체 CVE 목록은 아래처럼 압축된 인덱스 형태로 누적하는 구조를 기준으로 잡았습니다.</p>
-                    <div class="archive-list">
-                        <div class="archive-row">
-                            <div class="archive-id">CVE-2023-46604</div>
-                            <div class="archive-desc">Apache ActiveMQ OpenWire 원격 코드 실행 취약점 분석 및 우회 페이로드 연구</div>
-                            <span class="badge badge-critical">Critical 10.0</span>
-                            <a class="archive-link" href="https://github.com/sangrok-jeon/CVE-2023-46604-Analysis" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        </div>
-                        <div class="archive-row">
-                            <div class="archive-id">CVE-2022-42889</div>
-                            <div class="archive-desc">Apache Commons Text Text4Shell 취약점 원리 및 RCE 조건 분석</div>
-                            <span class="badge badge-critical">Critical 9.8</span>
-                            <a class="archive-link" href="https://github.com/sangrok-jeon/CVE-2022-42889-Analysis" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="project-section">
                 <div class="project-section-title">
                     <h3>Mobile Security</h3>
-                    <span class="pill">2 Total</span>
+                    <span class="pill">2 Projects</span>
                 </div>
-                <div class="project-grid featured-grid">
+                <div class="project-grid">
                     <article class="project-box">
                         <div class="project-header">
                             <div>
@@ -931,24 +851,6 @@
                         </div>
                         <a class="project-link" href="https://github.com/sangrok-jeon/android-intent-hijacking" target="_blank" rel="noopener noreferrer">GitHub 열기</a>
                     </article>
-                </div>
-                <div class="archive-box">
-                    <h4>All Mobile Research</h4>
-                    <p>모바일 프로젝트도 대표 사례는 카드로 먼저 보여주고, 개수가 늘어나면 아래 목록에 누적하는 방식으로 확장할 수 있도록 구성했습니다.</p>
-                    <div class="archive-list">
-                        <div class="archive-row">
-                            <div class="archive-id">mobile-frida-bypass</div>
-                            <div class="archive-desc">Frida를 활용한 루팅·탈옥 방지 로직 우회 연구</div>
-                            <span class="badge badge-mobile">Mobile</span>
-                            <a class="archive-link" href="https://github.com/sangrok-jeon/mobile-frida-bypass" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        </div>
-                        <div class="archive-row">
-                            <div class="archive-id">android-intent-hijacking</div>
-                            <div class="archive-desc">Android Intent 구성 취약점으로 인한 권한 상승 시나리오 분석</div>
-                            <span class="badge badge-mobile">Mobile</span>
-                            <a class="archive-link" href="https://github.com/sangrok-jeon/android-intent-hijacking" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -1013,9 +915,36 @@
             <div class="experience-group">
                 <div class="group-title">
                     <h3>학습 경험</h3>
-                    <span class="pill">1 Course</span>
+                    <span class="pill">4 Courses</span>
                 </div>
-                <div class="timeline-grid single">
+                <div class="timeline-grid">
+                    <article class="timeline-box">
+                        <div class="timeline-top">
+                            <span class="timeline-date">2023.09 - 2023.12</span>
+                        </div>
+                        <h3>윈스 / 부산정보산업진흥원</h3>
+                        <div class="timeline-role">사이버 보안 전문인력 양성과정</div>
+                        <p>보안관제, 보안 컨설팅, 보안 장비, 클라우드 관제 교육 과정을 이수하며 보안 운영과 관제 전반의 기본기를 체계적으로 익혔습니다.</p>
+                    </article>
+
+                    <article class="timeline-box">
+                        <div class="timeline-top">
+                            <span class="timeline-date">2023.11 - 2023.12</span>
+                        </div>
+                        <h3>ICT이노베이션스퀘어</h3>
+                        <div class="timeline-role">차세대 네트워크 보안장비 전문가 과정</div>
+                        <p>AI 복합교육 기반의 차세대 네트워크 보안장비 전문가 과정을 통해 보안 장비와 네트워크 보안 운영 역량을 확장했습니다.</p>
+                    </article>
+
+                    <article class="timeline-box">
+                        <div class="timeline-top">
+                            <span class="timeline-date">2022.11 - 2023.05</span>
+                        </div>
+                        <h3>ITWILL(서면)</h3>
+                        <div class="timeline-role">Spring Framework 기반 웹 개발</div>
+                        <p>Spring Framework를 활용한 웹 개발 과정을 통해 애플리케이션 구조와 웹 서비스 동작 흐름에 대한 이해를 쌓았습니다.</p>
+                    </article>
+
                     <article class="timeline-box">
                         <div class="timeline-top">
                             <span class="timeline-date">2025.10 - 2026.04</span>
@@ -1031,8 +960,8 @@
         <section class="section-card" id="credentials">
             <div class="section-head">
                 <div class="section-kicker">자격</div>
-                <h2>자격 사항과 참고 링크</h2>
-                <p>기초 역량을 보여주는 자격 사항과, 실제 프로젝트를 더 확인할 수 있는 링크를 함께 정리했습니다.</p>
+                <h2>자격 사항과 교육 이수</h2>
+                <p>기초 역량을 보여주는 자격 사항과, 업무 관련 전문성을 확장하기 위해 이수한 주요 교육 과정을 함께 정리했습니다.</p>
             </div>
             <div class="credential-grid">
                 <article class="credential-box">
@@ -1048,12 +977,12 @@
                 </article>
 
                 <aside class="contact-box">
-                    <h3>추가 확인</h3>
-                    <p>상세 분석은 각 GitHub 저장소의 README와 보고서에 정리되어 있습니다. 프로젝트별 재현 방식과 분석 범위를 추가로 확인할 수 있습니다.</p>
-                    <div class="contact-links">
-                        <a href="https://github.com/sangrok-jeon" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
-                        <a href="#projects">프로젝트 보기</a>
-                    </div>
+                    <h3>교육 이수</h3>
+                    <p>단기 교육 이수 내역은 기관과 주제 중심으로 요약해 정리했습니다.</p>
+                    <ul class="about-points">
+                        <li>개인정보보호위원회: 개인정보보호 및 컴플라이언스 관련 과정 다수 이수</li>
+                        <li>KISA: 정보보호 제품, MITRE ATT&CK, 침해사고 대응, 취약점 분석 관련 과정 다수 이수</li>
+                    </ul>
                 </aside>
             </div>
         </section>
