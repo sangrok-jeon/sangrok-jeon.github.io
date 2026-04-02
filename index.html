@@ -307,10 +307,23 @@
         }
 
         .stat {
+            display: block;
             padding: 16px;
             border-radius: 16px;
             background: #fff;
             border: 1px solid var(--line);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-2px);
+            border-color: rgba(15, 111, 255, 0.28);
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        .stat:focus-visible {
+            outline: 3px solid rgba(15, 111, 255, 0.22);
+            outline-offset: 3px;
         }
 
         .stat strong {
@@ -426,6 +439,10 @@
             color: var(--accent);
             font-size: 0.8rem;
             font-family: "IBM Plex Mono", monospace;
+        }
+
+        .project-section {
+            scroll-margin-top: 96px;
         }
 
         .project-section + .project-section {
@@ -689,22 +706,22 @@
             <aside class="snapshot">
                 <h2>핵심 요약</h2>
                 <div class="snapshot-grid">
-                    <div class="stat">
+                    <a class="stat" href="#projects-cve" aria-label="CVE 분석 프로젝트로 이동">
                         <strong>4</strong>
                         <span>CVE 분석</span>
-                    </div>
-                    <div class="stat">
+                    </a>
+                    <a class="stat" href="#projects-mobile" aria-label="모바일 연구 프로젝트로 이동">
                         <strong>1</strong>
                         <span>모바일 연구</span>
-                    </div>
-                    <div class="stat">
+                    </a>
+                    <a class="stat" href="#projects-web" aria-label="웹 보안 연구 프로젝트로 이동">
                         <strong>1</strong>
                         <span>웹 보안 연구</span>
-                    </div>
-                    <div class="stat">
+                    </a>
+                    <a class="stat" href="#credentials" aria-label="주요 자격 섹션으로 이동">
                         <strong>5</strong>
                         <span>주요 자격</span>
-                    </div>
+                    </a>
                 </div>
                 <div class="snapshot-note">
                     각 프로젝트는 공격 시나리오와 기술적 분석, 그리고 실제 운영 관점의 대응 방향까지 함께 정리하는 방식을 기준으로 구성했습니다.
@@ -770,7 +787,7 @@
                 <p>현재 공개된 주요 프로젝트를 카테고리별로 정리했습니다. 각 프로젝트는 핵심 주제와 분석 방향이 바로 보이도록 카드 형태로 구성했습니다.</p>
             </div>
 
-            <div class="project-section">
+            <div class="project-section" id="projects-cve">
                 <div class="project-section-title">
                     <h3>CVE Analysis</h3>
                     <span class="pill">4 Projects</span>
@@ -846,7 +863,7 @@
                 </div>
             </div>
 
-            <div class="project-section">
+            <div class="project-section" id="projects-mobile">
                 <div class="project-section-title">
                     <h3>Mobile Security</h3>
                     <span class="pill">1 Project</span>
@@ -871,7 +888,7 @@
                 </div>
             </div>
 
-            <div class="project-section">
+            <div class="project-section" id="projects-web">
                 <div class="project-section-title">
                     <h3>Web Security</h3>
                     <span class="pill">1 Project</span>
