@@ -557,6 +557,126 @@
             gap: 18px;
         }
 
+        .work-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 18px;
+        }
+
+        .work-box {
+            background: var(--surface-soft);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            padding: 24px;
+        }
+
+        .work-box h3 {
+            margin: 12px 0 12px;
+            font-size: 1.22rem;
+            letter-spacing: -0.03em;
+        }
+
+        .work-box p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .work-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .work-diagram {
+            background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        }
+
+        .diagram-kicker {
+            display: inline-flex;
+            margin-bottom: 14px;
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-family: "IBM Plex Mono", monospace;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .diagram-stack {
+            display: grid;
+            justify-items: center;
+            gap: 10px;
+        }
+
+        .diagram-node,
+        .zone-node {
+            width: min(100%, 310px);
+            padding: 14px 16px;
+            border-radius: 16px;
+            background: #fff;
+            border: 1px solid var(--line);
+            text-align: center;
+            line-height: 1.5;
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
+        }
+
+        .diagram-arrow {
+            color: var(--accent);
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .diagram-branch {
+            position: relative;
+            width: min(100%, 520px);
+            height: 28px;
+            margin: 2px auto 0;
+        }
+
+        .diagram-branch::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 1px;
+            height: 13px;
+            background: var(--line);
+            transform: translateX(-50%);
+        }
+
+        .diagram-branch::after {
+            content: "";
+            position: absolute;
+            left: 8%;
+            right: 8%;
+            top: 13px;
+            height: 1px;
+            background: var(--line);
+        }
+
+        .zone-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        .zone-node {
+            width: 100%;
+        }
+
+        .diagram-caption {
+            margin: 18px 0 0;
+            color: var(--muted);
+            line-height: 1.75;
+            font-size: 0.94rem;
+        }
+
         .cert-list {
             display: flex;
             flex-wrap: wrap;
@@ -590,7 +710,8 @@
             .strength-grid,
             .project-grid,
             .timeline-grid,
-            .credential-grid {
+            .credential-grid,
+            .work-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -624,12 +745,22 @@
             .project-box,
             .timeline-box,
             .credential-box,
-            .contact-box {
+            .contact-box,
+            .work-box,
+            .work-diagram {
                 padding: 20px;
             }
 
             .snapshot-grid {
                 grid-template-columns: 1fr 1fr;
+            }
+
+            .zone-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .diagram-branch {
+                display: none;
             }
 
             h1 {
@@ -671,6 +802,7 @@
                 <a href="#about">소개</a>
                 <a href="#strengths">강점</a>
                 <a href="#projects">프로젝트</a>
+                <a href="#representative-work">대표 실무</a>
                 <a href="#experience">경력</a>
                 <a href="#credentials">자격</a>
                 <a class="cta" href="https://github.com/sangrok-jeon" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -911,6 +1043,57 @@
                         <a class="project-link" href="https://github.com/sangrok-jeon/jsr-vuln-shop" target="_blank" rel="noopener noreferrer">GitHub 열기</a>
                     </article>
                 </div>
+            </div>
+        </section>
+
+        <section class="section-card" id="representative-work">
+            <div class="section-head">
+                <div class="section-kicker">Representative Work</div>
+                <h2>APEC Security Infrastructure</h2>
+                <p>개인 분석 프로젝트와 별도로, 대형 국제행사 환경에서 수행한 대표 실무 사례를 공개 가능한 수준의 고수준 아키텍처와 함께 정리했습니다.</p>
+            </div>
+            <div class="work-grid">
+                <article class="work-box">
+                    <span class="timeline-date">International Event Project</span>
+                    <h3>Solution Engineer</h3>
+                    <p>대형 국제행사 보안 인프라 구축 및 운영 프로젝트에서 방화벽 정책과 NAT/DNAT 구성, 이중 회선 기반 연결 구조, 핵심 미디어 트래픽 QoS 제어, APT 설치 지원을 수행했습니다. 또한 외부 기관 터널 연동을 위해 방화벽 측 NAT 기반 연결 준비와 관련 트래픽 처리 구성을 지원했습니다.</p>
+                    <ul class="about-points">
+                        <li>이중 회선 기반 방화벽 운영 구조를 지원해 서비스 연속성을 고려한 연결 체계를 구성</li>
+                        <li>구간별 정책과 NAT/DNAT를 적용하고 핵심 미디어 트래픽에 QoS 제어 정책 반영</li>
+                        <li>APT 설치를 지원하고 공개 가능한 수준의 고수준 아키텍처 개념도로 실무 구조 정리</li>
+                    </ul>
+                    <div class="work-meta">
+                        <span class="meta-tag">Firewall Policy</span>
+                        <span class="meta-tag">NAT / DNAT</span>
+                        <span class="meta-tag">QoS</span>
+                        <span class="meta-tag">APT</span>
+                        <span class="meta-tag">High-level Architecture</span>
+                    </div>
+                </article>
+
+                <aside class="work-diagram">
+                    <div class="diagram-kicker">Sanitized Architecture</div>
+                    <div class="diagram-stack" aria-label="High-level security architecture concept diagram">
+                        <div class="diagram-node">Primary / Secondary Uplink</div>
+                        <div class="diagram-arrow" aria-hidden="true">↓</div>
+                        <div class="diagram-node">Firewall</div>
+                        <div class="diagram-arrow" aria-hidden="true">↓</div>
+                        <div class="diagram-node">APT / Monitoring</div>
+                        <div class="diagram-arrow" aria-hidden="true">↓</div>
+                        <div class="diagram-node">Traffic Control (QoS)</div>
+                        <div class="diagram-arrow" aria-hidden="true">↓</div>
+                        <div class="diagram-node">Distribution Layer (L3 Switch)</div>
+                        <div class="diagram-arrow" aria-hidden="true">↓</div>
+                        <div class="diagram-node">Access Switches</div>
+                    </div>
+                    <div class="diagram-branch" aria-hidden="true"></div>
+                    <div class="zone-grid">
+                        <div class="zone-node">Wireless Zone</div>
+                        <div class="zone-node">Wired Zone</div>
+                        <div class="zone-node">External Services</div>
+                    </div>
+                    <p class="diagram-caption">공개용으로 재구성한 개념도이며, 실제 운영 환경의 세부 토폴로지와 정책 정보는 제외한 고수준 구조만 반영했습니다.</p>
+                </aside>
             </div>
         </section>
 
