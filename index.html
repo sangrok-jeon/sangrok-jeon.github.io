@@ -677,6 +677,31 @@
             font-size: 0.94rem;
         }
 
+        .diagram-scope {
+            margin-top: 16px;
+            padding: 16px 18px;
+            border-radius: 16px;
+            background: rgba(15, 111, 255, 0.06);
+            border: 1px solid rgba(15, 111, 255, 0.14);
+        }
+
+        .diagram-scope strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--ink);
+            font-size: 0.84rem;
+            font-family: "IBM Plex Mono", monospace;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .diagram-scope p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.75;
+            font-size: 0.94rem;
+        }
+
         .cert-list {
             display: flex;
             flex-wrap: wrap;
@@ -1050,7 +1075,7 @@
             <div class="section-head">
                 <div class="section-kicker">Representative Work</div>
                 <h2>APEC Security Infrastructure</h2>
-                <p>개인 분석 프로젝트와 별도로, 대형 국제행사 환경에서 수행한 대표 실무 사례를 공개 가능한 수준의 고수준 아키텍처와 함께 정리했습니다.</p>
+                <p>실제로 수행한 대표 실무 프로젝트를 공개 가능한 수준의 고수준 아키텍처와 함께 정리했습니다.</p>
             </div>
             <div class="work-grid">
                 <article class="work-box">
@@ -1073,7 +1098,7 @@
                 </article>
 
                 <aside class="work-diagram">
-                    <div class="diagram-kicker">Sanitized Architecture</div>
+                    <div class="diagram-kicker">High-level Environment</div>
                     <div class="diagram-stack" aria-label="High-level security architecture concept diagram">
                         <div class="diagram-node">Primary / Secondary Uplink</div>
                         <div class="diagram-arrow" aria-hidden="true">↓</div>
@@ -1093,7 +1118,11 @@
                         <div class="zone-node">Wired Zone</div>
                         <div class="zone-node">External Services</div>
                     </div>
-                    <p class="diagram-caption">공개용으로 재구성한 개념도이며, 실제 운영 환경의 세부 토폴로지와 정책 정보는 제외한 고수준 구조만 반영했습니다.</p>
+                    <p class="diagram-caption">공개용으로 단순화한 환경 개념도이며, 전체 상세 설계가 아니라 실무 환경의 상위 구조만 요약한 것입니다.</p>
+                    <div class="diagram-scope">
+                        <strong>Scope of Contribution</strong>
+                        <p>방화벽 정책 및 NAT/DNAT 구성, QoS 관련 트래픽 처리, APT 설치 지원, 외부 기관 IPsec VPN 연동을 위한 방화벽 측 연결 준비 범위를 담당했습니다.</p>
+                    </div>
                 </aside>
             </div>
         </section>
