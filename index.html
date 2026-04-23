@@ -289,11 +289,6 @@
             color: var(--ink);
         }
 
-        .button-light {
-            background: #fff;
-            color: var(--ink);
-        }
-
         .snapshot {
             background: var(--surface-soft);
             border: 1px solid var(--line);
@@ -329,26 +324,6 @@
             transform: translateY(-2px);
             border-color: rgba(15, 111, 255, 0.28);
             box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
-        }
-
-        .stat-featured {
-            grid-column: 1 / -1;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            background: linear-gradient(135deg, #0f172a 0%, #12475e 100%);
-            border-color: rgba(15, 111, 255, 0.28);
-            color: #fff;
-        }
-
-        .stat-featured strong {
-            color: #fff;
-            margin-bottom: 0;
-        }
-
-        .stat-featured span {
-            color: rgba(255, 255, 255, 0.78);
         }
 
         .stat:focus-visible {
@@ -567,11 +542,10 @@
             position: relative;
             overflow: hidden;
             background:
-                radial-gradient(circle at 10% 0%, rgba(45, 212, 191, 0.2), transparent 28%),
-                radial-gradient(circle at 90% 10%, rgba(59, 130, 246, 0.18), transparent 30%),
-                linear-gradient(135deg, #07111f 0%, #0f2f3d 54%, #0f172a 100%);
-            border-color: rgba(148, 163, 184, 0.24);
-            color: #fff;
+                radial-gradient(circle at top left, rgba(15, 111, 255, 0.08), transparent 28%),
+                linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+            border-color: var(--line);
+            color: var(--ink);
         }
 
         .featured-pentest::before {
@@ -579,10 +553,10 @@
             position: absolute;
             inset: 0;
             background-image:
-                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+                linear-gradient(rgba(15, 111, 255, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 111, 255, 0.035) 1px, transparent 1px);
             background-size: 42px 42px;
-            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 86%);
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 76%);
             pointer-events: none;
         }
 
@@ -592,19 +566,19 @@
         }
 
         .featured-pentest .section-kicker {
-            color: #67e8f9;
+            color: var(--accent);
         }
 
         .featured-pentest .section-head h2,
         .featured-pentest .featured-copy h3 {
-            color: #fff;
+            color: var(--ink);
         }
 
         .featured-pentest .section-head p,
         .featured-pentest .featured-copy p,
         .featured-caption,
         .featured-metric span {
-            color: rgba(226, 232, 240, 0.82);
+            color: var(--muted);
         }
 
         .featured-layout {
@@ -616,18 +590,16 @@
 
         .featured-copy,
         .featured-flow-card {
-            border: 1px solid rgba(226, 232, 240, 0.16);
+            border: 1px solid var(--line);
             border-radius: var(--radius-md);
-            background: rgba(15, 23, 42, 0.58);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(8px);
+            background: var(--surface-soft);
             padding: 24px;
         }
 
         .featured-label {
             display: inline-flex;
             margin-bottom: 12px;
-            color: #67e8f9;
+            color: var(--accent);
             font-size: 0.8rem;
             font-family: "Nanum Gothic Coding", monospace;
             letter-spacing: 0.08em;
@@ -635,7 +607,7 @@
         }
 
         .featured-flow-card .diagram-kicker {
-            color: #67e8f9;
+            color: var(--accent);
             font-family: "Nanum Gothic Coding", monospace;
         }
 
@@ -663,14 +635,14 @@
             min-height: 116px;
             padding: 16px;
             border-radius: 16px;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(226, 232, 240, 0.14);
+            background: #fff;
+            border: 1px solid var(--line);
         }
 
         .featured-metric strong {
             display: block;
             margin-bottom: 8px;
-            color: #fff;
+            color: var(--ink);
             font-size: 0.96rem;
             letter-spacing: -0.02em;
         }
@@ -686,9 +658,9 @@
         }
 
         .featured-pentest .meta-tag {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(226, 232, 240, 0.2);
-            color: rgba(255, 255, 255, 0.86);
+            background: #fff;
+            border-color: var(--line);
+            color: var(--muted);
         }
 
         .featured-actions {
@@ -710,10 +682,10 @@
             gap: 12px;
             padding: 14px 16px;
             border-radius: 16px;
-            background: rgba(255, 255, 255, 0.92);
+            background: #fff;
             color: var(--ink);
-            border: 1px solid rgba(226, 232, 240, 0.28);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+            border: 1px solid var(--line);
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
         }
 
         .flow-index {
@@ -736,7 +708,7 @@
         }
 
         .flow-arrow {
-            color: #67e8f9;
+            color: var(--accent);
             font-size: 1.05rem;
             line-height: 1;
             text-align: center;
@@ -1068,9 +1040,9 @@
             <nav class="nav" aria-label="Primary">
                 <a href="#about">소개</a>
                 <a href="#strengths">강점</a>
-                <a href="#featured-pentest">대표 프로젝트</a>
+                <a href="#featured-pentest">Pentest Lab</a>
+                <a href="#representative-work">APEC 실무</a>
                 <a href="#projects">프로젝트</a>
-                <a href="#representative-work">대표 실무</a>
                 <a href="#experience">경력</a>
                 <a href="#credentials">자격</a>
                 <a class="cta" href="https://github.com/sangrok-jeon" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -1106,9 +1078,13 @@
             <aside class="snapshot">
                 <h2>핵심 요약</h2>
                 <div class="snapshot-grid">
-                    <a class="stat stat-featured" href="#featured-pentest" aria-label="대표 모의해킹 프로젝트로 이동">
+                    <a class="stat" href="#featured-pentest" aria-label="Pentest Lab 섹션으로 이동">
                         <strong>1</strong>
-                        <span>대표 모의해킹</span>
+                        <span>Pentest Lab</span>
+                    </a>
+                    <a class="stat" href="#representative-work" aria-label="APEC 실무 프로젝트로 이동">
+                        <strong>1</strong>
+                        <span>APEC 실무</span>
                     </a>
                     <a class="stat" href="#projects-cve" aria-label="CVE 분석 프로젝트로 이동">
                         <strong>5</strong>
@@ -1186,7 +1162,7 @@
 
         <section class="section-card featured-pentest" id="featured-pentest">
             <div class="section-head">
-                <div class="section-kicker">Featured Pentest Project</div>
+                <div class="section-kicker">Pentest Lab</div>
                 <h2>Web to Supply Chain Pentest Lab</h2>
                 <p>모의해킹 보고서와 재현 가능한 Docker 실습 환경을 함께 공개한 end-to-end 침해 시나리오 프로젝트입니다.</p>
             </div>
@@ -1218,7 +1194,7 @@
                     </div>
                     <div class="featured-actions">
                         <a class="button button-primary" href="https://github.com/sangrok-jeon/web-to-supply-chain-pentest-lab" target="_blank" rel="noopener noreferrer">GitHub 열기</a>
-                        <a class="button button-light" href="https://github.com/sangrok-jeon/web-to-supply-chain-pentest-lab/blob/main/report/docker-lab-pentest-report.pdf" target="_blank" rel="noopener noreferrer">보고서 보기</a>
+                        <a class="button button-secondary" href="https://github.com/sangrok-jeon/web-to-supply-chain-pentest-lab/blob/main/report/docker-lab-pentest-report.pdf" target="_blank" rel="noopener noreferrer">보고서 보기</a>
                     </div>
                 </article>
 
@@ -1251,6 +1227,66 @@
                         </div>
                     </div>
                     <p class="featured-caption">세부 공격 단계와 증적은 GitHub 문서와 PDF 보고서에서 확인할 수 있도록 분리하고, 포트폴리오에서는 전체 침해 흐름만 압축해 보여줍니다.</p>
+                </aside>
+            </div>
+        </section>
+
+        <section class="section-card" id="representative-work">
+            <div class="section-head">
+                <div class="section-kicker">Representative Work</div>
+                <h2>APEC Security Infrastructure</h2>
+                <p>실제로 수행한 대표 실무 프로젝트를 공개 가능한 수준의 고수준 아키텍처와 함께 정리했습니다.</p>
+            </div>
+            <div class="work-grid">
+                <article class="work-box">
+                    <span class="timeline-date">International Event Project</span>
+                    <h3>Solution Engineer</h3>
+                    <p>대형 국제행사 보안 인프라 구축 및 운영 프로젝트에서 방화벽 정책과 NAT/DNAT 구성, 이중 회선 기반 연결 구조, 핵심 미디어 트래픽 QoS 제어, APT 설치 지원을 수행했습니다. 또한 외부 기관 VPN 연동을 위해 방화벽 측 NAT/DNAT 기반 연결 준비와 관련 트래픽 처리 구성을 지원했습니다.</p>
+                    <ul class="about-points">
+                        <li>이중 회선 기반 방화벽 운영 구조를 지원해 서비스 연속성을 고려한 연결 체계를 구성</li>
+                        <li>구간별 정책과 NAT/DNAT를 적용하고 핵심 미디어 트래픽에 QoS 제어 정책을 반영했으며, 외부 기관 VPN 연동에 필요한 방화벽 측 연결 구성을 지원</li>
+                        <li>APT 설치를 지원하고 공개 가능한 수준의 고수준 아키텍처 개념도로 실무 구조 정리</li>
+                    </ul>
+                    <div class="diagram-scope">
+                        <strong>사용 기술</strong>
+                        <div class="work-meta">
+                            <span class="meta-tag">Firewall</span>
+                            <span class="meta-tag">NAT / DNAT</span>
+                            <span class="meta-tag">Multipath Routing</span>
+                            <span class="meta-tag">Health Check</span>
+                            <span class="meta-tag">QoS</span>
+                            <span class="meta-tag">APT</span>
+                        </div>
+                        <strong class="scope-subtitle">수행 업무 / 검증</strong>
+                        <div class="work-meta">
+                            <span class="meta-tag">Failover</span>
+                            <span class="meta-tag">LLCF</span>
+                        </div>
+                    </div>
+                </article>
+
+                <aside class="work-diagram">
+                    <div class="diagram-kicker">High-level Environment</div>
+                    <div class="diagram-stack" aria-label="High-level security architecture concept diagram">
+                        <div class="diagram-node">Primary / Secondary Uplink</div>
+                        <div class="diagram-arrow" aria-hidden="true">↓</div>
+                        <div class="diagram-node">Firewall</div>
+                        <div class="diagram-arrow" aria-hidden="true">↓</div>
+                        <div class="diagram-node">APT / Monitoring</div>
+                        <div class="diagram-arrow" aria-hidden="true">↓</div>
+                        <div class="diagram-node">Traffic Control (QoS)</div>
+                        <div class="diagram-arrow" aria-hidden="true">↓</div>
+                        <div class="diagram-node">Distribution Layer (L3 Switch)</div>
+                        <div class="diagram-arrow" aria-hidden="true">↓</div>
+                        <div class="diagram-node">Access Switches</div>
+                    </div>
+                    <div class="diagram-branch" aria-hidden="true"></div>
+                    <div class="zone-grid">
+                        <div class="zone-node">Wireless Zone</div>
+                        <div class="zone-node">Wired Zone</div>
+                        <div class="zone-node">External Services</div>
+                    </div>
+                    <p class="diagram-caption">공개용으로 단순화한 환경 개념도이며, 전체 상세 설계가 아니라 실무 환경의 상위 구조만 요약한 것입니다.</p>
                 </aside>
             </div>
         </section>
@@ -1420,66 +1456,6 @@
                         <a class="project-link" href="https://github.com/sangrok-jeon/jsr-vuln-shop" target="_blank" rel="noopener noreferrer">GitHub 열기</a>
                     </article>
                 </div>
-            </div>
-        </section>
-
-        <section class="section-card" id="representative-work">
-            <div class="section-head">
-                <div class="section-kicker">Representative Work</div>
-                <h2>APEC Security Infrastructure</h2>
-                <p>실제로 수행한 대표 실무 프로젝트를 공개 가능한 수준의 고수준 아키텍처와 함께 정리했습니다.</p>
-            </div>
-            <div class="work-grid">
-                <article class="work-box">
-                    <span class="timeline-date">International Event Project</span>
-                    <h3>Solution Engineer</h3>
-                    <p>대형 국제행사 보안 인프라 구축 및 운영 프로젝트에서 방화벽 정책과 NAT/DNAT 구성, 이중 회선 기반 연결 구조, 핵심 미디어 트래픽 QoS 제어, APT 설치 지원을 수행했습니다. 또한 외부 기관 VPN 연동을 위해 방화벽 측 NAT/DNAT 기반 연결 준비와 관련 트래픽 처리 구성을 지원했습니다.</p>
-                    <ul class="about-points">
-                        <li>이중 회선 기반 방화벽 운영 구조를 지원해 서비스 연속성을 고려한 연결 체계를 구성</li>
-                        <li>구간별 정책과 NAT/DNAT를 적용하고 핵심 미디어 트래픽에 QoS 제어 정책을 반영했으며, 외부 기관 VPN 연동에 필요한 방화벽 측 연결 구성을 지원</li>
-                        <li>APT 설치를 지원하고 공개 가능한 수준의 고수준 아키텍처 개념도로 실무 구조 정리</li>
-                    </ul>
-                    <div class="diagram-scope">
-                        <strong>사용 기술</strong>
-                        <div class="work-meta">
-                            <span class="meta-tag">Firewall</span>
-                            <span class="meta-tag">NAT / DNAT</span>
-                            <span class="meta-tag">Multipath Routing</span>
-                            <span class="meta-tag">Health Check</span>
-                            <span class="meta-tag">QoS</span>
-                            <span class="meta-tag">APT</span>
-                        </div>
-                        <strong class="scope-subtitle">수행 업무 / 검증</strong>
-                        <div class="work-meta">
-                            <span class="meta-tag">Failover</span>
-                            <span class="meta-tag">LLCF</span>
-                        </div>
-                    </div>
-                </article>
-
-                <aside class="work-diagram">
-                    <div class="diagram-kicker">High-level Environment</div>
-                    <div class="diagram-stack" aria-label="High-level security architecture concept diagram">
-                        <div class="diagram-node">Primary / Secondary Uplink</div>
-                        <div class="diagram-arrow" aria-hidden="true">↓</div>
-                        <div class="diagram-node">Firewall</div>
-                        <div class="diagram-arrow" aria-hidden="true">↓</div>
-                        <div class="diagram-node">APT / Monitoring</div>
-                        <div class="diagram-arrow" aria-hidden="true">↓</div>
-                        <div class="diagram-node">Traffic Control (QoS)</div>
-                        <div class="diagram-arrow" aria-hidden="true">↓</div>
-                        <div class="diagram-node">Distribution Layer (L3 Switch)</div>
-                        <div class="diagram-arrow" aria-hidden="true">↓</div>
-                        <div class="diagram-node">Access Switches</div>
-                    </div>
-                    <div class="diagram-branch" aria-hidden="true"></div>
-                    <div class="zone-grid">
-                        <div class="zone-node">Wireless Zone</div>
-                        <div class="zone-node">Wired Zone</div>
-                        <div class="zone-node">External Services</div>
-                    </div>
-                    <p class="diagram-caption">공개용으로 단순화한 환경 개념도이며, 전체 상세 설계가 아니라 실무 환경의 상위 구조만 요약한 것입니다.</p>
-                </aside>
             </div>
         </section>
 
