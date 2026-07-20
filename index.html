@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sangrok Jeon | Security Portfolio</title>
-    <meta name="description" content="전상록의 보안 포트폴리오입니다. AI 사이버 공방전, CVE 분석, 모바일 앱 진단, 웹 보안 연구, end-to-end 모의해킹 프로젝트를 실무 관점에서 정리했습니다.">
+    <meta name="description" content="전상록의 보안 포트폴리오입니다. CVE 분석, 모바일 앱 진단, 웹 보안 연구, end-to-end 모의해킹 프로젝트를 실무 관점에서 정리했습니다.">
     <meta name="theme-color" content="#0f172a">
     <meta property="og:title" content="Sangrok Jeon | Security Portfolio">
-    <meta property="og:description" content="AI 사이버 공방전, 실전형 취약점 분석, 모의해킹 보고서, 재현 가능한 보안 실습 환경을 정리한 보안 포트폴리오입니다.">
+    <meta property="og:description" content="실전형 취약점 분석, 모의해킹 보고서, 재현 가능한 보안 실습 환경을 정리한 보안 포트폴리오입니다.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sangrok-jeon.github.io/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1066,7 +1066,6 @@
             <nav class="nav" aria-label="Primary">
                 <a href="#about">소개</a>
                 <a href="#strengths">강점</a>
-                <a href="#featured-dah">AI 공방전</a>
                 <a href="#featured-pentest">Pentest Lab</a>
                 <a href="#representative-work">APEC 실무</a>
                 <a href="#projects">프로젝트</a>
@@ -1085,7 +1084,7 @@
                 <div class="hero-role">Security Engineer | Penetration Tester</div>
                 <p class="hero-summary">
                     보안 솔루션 엔지니어 실무를 기반으로 CVE, 모바일·웹 취약점 분석,<br>
-                    AI 사이버 공방전과 end-to-end 모의해킹 프로젝트 역량을 확장해왔습니다.<br>
+                    end-to-end 모의해킹 프로젝트와 취약점 분석 역량을 확장해왔습니다.<br>
                     SK쉴더스 화이트해커 교육 최종 프로젝트 1위.
                 </p>
                 <div class="hero-contact">
@@ -1111,10 +1110,6 @@
                     <a class="stat" href="#featured-pentest" aria-label="Pentest Lab 섹션으로 이동">
                         <strong>1</strong>
                         <span>Pentest Lab</span>
-                    </a>
-                    <a class="stat" href="#featured-dah" aria-label="AI 공방전 프로젝트로 이동">
-                        <strong>1</strong>
-                        <span>AI 공방전</span>
                     </a>
                     <a class="stat" href="#representative-work" aria-label="APEC 실무 프로젝트로 이동">
                         <strong>1</strong>
@@ -1194,77 +1189,6 @@
             </div>
         </section>
 
-        <section class="section-card featured-pentest" id="featured-dah">
-            <div class="section-head">
-                <div class="section-kicker">AI Cyber Attack Defense</div>
-                <h2>PX4 UAV AI Cyber Attack Defense</h2>
-                <p>DAH 2026 TPQ74-K 팀 프로젝트로 진행한 PX4/MAVLink 기반 UAV AI 사이버 공방전 시스템입니다.</p>
-            </div>
-            <div class="featured-layout">
-                <article class="featured-copy">
-                    <span class="featured-label">Defense AI Cyber Security Hackathon</span>
-                    <h3>Safety-Guarded Red Team Agent와 Fail-Closed Defense Gateway</h3>
-                    <p>PX4 SITL과 QGroundControl 환경에서 MAVLink/C2 공격 시나리오를 설계하고, Suricata·Rulebase·XGBoost·MetaDetect·LLM/ReAct·Policy Engine을 결합한 방어 파이프라인으로 탐지·차단·복구 흐름을 검증했습니다.</p>
-                    <div class="featured-highlights">
-                        <div class="featured-metric">
-                            <strong>Attack Agent</strong>
-                            <span>Observe, feature extraction, LLM/rule decision, PolicyGuard, feedback loop</span>
-                        </div>
-                        <div class="featured-metric">
-                            <strong>Defense Pipeline</strong>
-                            <span>Suricata, MAVLink runtime monitor, XGBoost, MetaDetect, LLM/ReAct</span>
-                        </div>
-                        <div class="featured-metric">
-                            <strong>Gateway Control</strong>
-                            <span>PacketEnvelope, HMAC, PacketCache, ALLOW approval, fail-closed routing</span>
-                        </div>
-                    </div>
-                    <div class="project-meta">
-                        <span class="meta-tag">PX4 SITL</span>
-                        <span class="meta-tag">MAVLink</span>
-                        <span class="meta-tag">UAV Cyber Defense</span>
-                        <span class="meta-tag">XGBoost</span>
-                        <span class="meta-tag">Streamlit</span>
-                    </div>
-                    <span class="award-badge">DAH 2026 TPQ74-K Team Project</span>
-                    <div class="featured-actions">
-                        <a class="button button-primary" href="https://github.com/sangrok-jeon/px4-uav-ai-cyber-attack-defense" target="_blank" rel="noopener noreferrer">GitHub 열기</a>
-                        <a class="button button-secondary" href="https://github.com/sangrok-jeon/px4-uav-ai-cyber-attack-defense/blob/main/docs/report/DAH2026_%EC%98%88%EC%84%A0%EB%B3%B4%EA%B3%A0%EC%84%9C_TPQ74-K.pdf" target="_blank" rel="noopener noreferrer">보고서 보기</a>
-                    </div>
-                </article>
-
-                <aside class="featured-flow-card">
-                    <div class="diagram-kicker">Attack-Defense Flow</div>
-                    <div class="attack-flow" aria-label="PX4 UAV AI cyber attack defense flow summary">
-                        <div class="flow-node">
-                            <span class="flow-index">01</span>
-                            <strong>MAVLink Observation</strong>
-                        </div>
-                        <div class="flow-arrow" aria-hidden="true">↓</div>
-                        <div class="flow-node">
-                            <span class="flow-index">02</span>
-                            <strong>PolicyGuard Decision</strong>
-                        </div>
-                        <div class="flow-arrow" aria-hidden="true">↓</div>
-                        <div class="flow-node">
-                            <span class="flow-index">03</span>
-                            <strong>Bridge / Inline Gateway</strong>
-                        </div>
-                        <div class="flow-arrow" aria-hidden="true">↓</div>
-                        <div class="flow-node">
-                            <span class="flow-index">04</span>
-                            <strong>Suricata / XGBoost / MetaDetect</strong>
-                        </div>
-                        <div class="flow-arrow" aria-hidden="true">↓</div>
-                        <div class="flow-node">
-                            <span class="flow-index">05</span>
-                            <strong>Policy Engine / Recovery</strong>
-                        </div>
-                    </div>
-                    <p class="featured-caption">공격 에이전트와 방어 에이전트를 하나의 MAVLink 이벤트 흐름 안에서 연결하고, 최종 실행과 차단은 정책 계층이 통제하도록 설계했습니다.</p>
-                </aside>
-            </div>
-        </section>
 
         <section class="section-card featured-pentest" id="featured-pentest">
             <div class="section-head">
@@ -1405,31 +1329,6 @@
                 <p>현재 공개된 주요 프로젝트를 카테고리별로 정리했습니다.<br>각 프로젝트는 핵심 주제와 분석 방향이 바로 보이도록 카드 형태로 구성했습니다.</p>
             </div>
 
-            <div class="project-section" id="projects-ai">
-                <div class="project-section-title">
-                    <h3>AI Cyber Attack Defense</h3>
-                    <span class="pill">1 Project</span>
-                </div>
-                <div class="project-grid">
-                    <article class="project-box">
-                        <div class="project-header">
-                            <div>
-                                <span>PX4 / MAVLink UAV Cyber Range</span>
-                                <h3>PX4 UAV AI Cyber Attack Defense</h3>
-                            </div>
-                            <span class="badge badge-pentest">AI Defense</span>
-                        </div>
-                        <p>PX4 SITL 기반 UAV 환경에서 안전 통제형 공격 에이전트와 fail-closed 방어 게이트웨이를 구현한 DAH 2026 팀 프로젝트입니다. MAVLink 관측, PolicyGuard, Suricata, XGBoost, MetaDetect, LLM/ReAct, Streamlit 대시보드를 하나의 공방전 흐름으로 연결했습니다.</p>
-                        <div class="project-meta">
-                            <span class="meta-tag">PX4 SITL</span>
-                            <span class="meta-tag">MAVLink</span>
-                            <span class="meta-tag">AI Agent</span>
-                            <span class="meta-tag">Defense Pipeline</span>
-                        </div>
-                        <a class="project-link" href="https://github.com/sangrok-jeon/px4-uav-ai-cyber-attack-defense" target="_blank" rel="noopener noreferrer">GitHub 열기</a>
-                    </article>
-                </div>
-            </div>
 
             <div class="project-section" id="projects-cve">
                 <div class="project-section-title">
