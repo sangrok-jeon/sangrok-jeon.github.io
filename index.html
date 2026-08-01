@@ -1065,6 +1065,7 @@
             </div>
             <nav class="nav" aria-label="Primary">
                 <a href="#about">소개</a>
+                <a href="#featured-uav">UAV AI Defense</a>
                 <a href="#featured-pentest">Pentest Lab</a>
                 <a href="#representative-work">APEC 실무</a>
                 <a href="#projects">프로젝트</a>
@@ -1106,6 +1107,10 @@
             <aside class="snapshot">
                 <h2>핵심 요약</h2>
                 <div class="snapshot-grid">
+                    <a class="stat" href="#featured-uav" aria-label="UAV AI 공방전 프로젝트로 이동">
+                        <strong>1</strong>
+                        <span>UAV AI 공방전</span>
+                    </a>
                     <a class="stat" href="#featured-pentest" aria-label="Pentest Lab 섹션으로 이동">
                         <strong>1</strong>
                         <span>Pentest Lab</span>
@@ -1125,10 +1130,6 @@
                     <a class="stat" href="#projects-web" aria-label="웹 보안 연구 프로젝트로 이동">
                         <strong>1</strong>
                         <span>웹 보안 연구</span>
-                    </a>
-                    <a class="stat" href="#credentials" aria-label="주요 자격 섹션으로 이동">
-                        <strong>5</strong>
-                        <span>주요 자격</span>
                     </a>
                 </div>
                 <div class="snapshot-note">
@@ -1159,6 +1160,77 @@
                         <li>보안 장비 운영 경험을 바탕으로 탐지, 운영 영향, 완화 전략을 함께 고려합니다.</li>
                         <li>CVE 재현부터 모의해킹 보고서까지, 재현 가능한 형태로 정리하는 것을 기준으로 삼습니다.</li>
                     </ul>
+                </aside>
+            </div>
+        </section>
+
+        <section class="section-card featured-pentest" id="featured-uav">
+            <div class="section-head">
+                <div class="section-kicker">Defense AI · UAV Security</div>
+                <h2>PX4 UAV AI Cyber Attack Defense</h2>
+                <p>PX4 SITL과 MAVLink 기반 UAV 환경에서 안전 통제형 공격 에이전트와 fail-closed 방어 파이프라인을 연결한 DAH 2026 TPQ74-K 팀 프로젝트입니다.</p>
+            </div>
+            <div class="featured-layout">
+                <article class="featured-copy">
+                    <span class="featured-label">Safety-Guarded Red Team · Fail-Closed Defense</span>
+                    <h3>공격 판단부터 탐지·차단·복구까지 하나의 공방전 흐름으로</h3>
+                    <p>모든 능동 공격 action을 PolicyGuard가 허용 대상 IP·PX4 SysID·보호 구간·recovery 상태·강도·반복 횟수·duration 기준으로 최종 통제합니다. 방어 측은 Suricata, Rulebase, XGBoost, MetaDetect, LLM/ReAct의 근거를 Policy Engine에서 정규화하고, 승인된 MAVLink 패킷만 PX4로 전달하도록 설계했습니다.</p>
+                    <div class="featured-highlights">
+                        <div class="featured-metric">
+                            <strong>My Role</strong>
+                            <span>팀 리드, 공격 시나리오 총괄, Suricata 룰 구성</span>
+                        </div>
+                        <div class="featured-metric">
+                            <strong>Recovery & Report</strong>
+                            <span>복구 전략 설계, 보고서 아키텍처</span>
+                        </div>
+                        <div class="featured-metric">
+                            <strong>Defense Stack</strong>
+                            <span>Suricata, XGBoost, MetaDetect, LLM/ReAct, Policy Engine</span>
+                        </div>
+                    </div>
+                    <div class="project-meta">
+                        <span class="meta-tag">PX4 SITL</span>
+                        <span class="meta-tag">MAVLink</span>
+                        <span class="meta-tag">AI Agent</span>
+                        <span class="meta-tag">PolicyGuard</span>
+                        <span class="meta-tag">Recovery Strategy</span>
+                    </div>
+                    <div class="featured-actions">
+                        <a class="button button-primary" href="https://github.com/sangrok-jeon/px4-uav-ai-cyber-attack-defense" target="_blank" rel="noopener noreferrer">GitHub 열기</a>
+                        <a class="button button-secondary" href="https://github.com/sangrok-jeon/px4-uav-ai-cyber-attack-defense/blob/main/docs/report/DAH2026_%EC%98%88%EC%84%A0%EB%B3%B4%EA%B3%A0%EC%84%9C_TPQ74-K.pdf" target="_blank" rel="noopener noreferrer">예선 보고서 보기</a>
+                    </div>
+                </article>
+
+                <aside class="featured-flow-card">
+                    <div class="diagram-kicker">Attack–Defense–Recovery Flow</div>
+                    <div class="attack-flow" aria-label="PX4 UAV AI cyber attack defense flow summary">
+                        <div class="flow-node">
+                            <span class="flow-index">01</span>
+                            <strong>Observe · MAVLink Feature Extract</strong>
+                        </div>
+                        <div class="flow-arrow" aria-hidden="true">↓</div>
+                        <div class="flow-node">
+                            <span class="flow-index">02</span>
+                            <strong>AI Decision · PolicyGuard</strong>
+                        </div>
+                        <div class="flow-arrow" aria-hidden="true">↓</div>
+                        <div class="flow-node">
+                            <span class="flow-index">03</span>
+                            <strong>Suricata · Rulebase · XGBoost · MetaDetect</strong>
+                        </div>
+                        <div class="flow-arrow" aria-hidden="true">↓</div>
+                        <div class="flow-node">
+                            <span class="flow-index">04</span>
+                            <strong>LLM/ReAct · Policy Engine</strong>
+                        </div>
+                        <div class="flow-arrow" aria-hidden="true">↓</div>
+                        <div class="flow-node">
+                            <span class="flow-index">05</span>
+                            <strong>Block · Evidence · Safe Recovery</strong>
+                        </div>
+                    </div>
+                    <p class="featured-caption">LLM은 분석과 근거 생성을 보조하고, 실제 실행과 차단은 PolicyGuard·Policy Engine·Block Registry가 통제하도록 권한을 분리했습니다.</p>
                 </aside>
             </div>
         </section>
